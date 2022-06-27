@@ -26,6 +26,7 @@
 #include "myqcombobox.h"
 //#include <QHeaderView>
 #include<QFileDialog>
+#include<QMenu>
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -55,7 +56,9 @@ private:
     void serialPortCheck(bool);
     void serialPortSend(const QString &str,bool &hexshow);
     void serialPortRecv();
-
+    void serialPortRecvSign();
+    void serialPortErrorSign(QSerialPort::SerialPortError error);
+    void serialCheckTimerSig();
     void initTabwidget();
     void createTabWidget(const QString &name);
     void createTableWiget(QTableWidget * tableWidget,const QString &name);
@@ -66,9 +69,12 @@ private:
     Ui::MainWindow *ui;
     conifg *cfgWidget;
     QTimer *PriecSendTimer;
+    QTimer *recvTimer;
+    QTimer *serialCheckTimer;
     SqlList *sqlist;
     QStringList *tableName;
     QSerialPort *serial;
+    QString currentComeName;
     int  loopListCount;
     bool isSerialOpen;
     bool isSendFile;
