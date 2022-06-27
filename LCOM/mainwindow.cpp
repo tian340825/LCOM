@@ -121,7 +121,7 @@ void MainWindow::sendPushButtonRightSign()
     {
         ui->sendPushButton->setText("发送(S)");
     }
-    else if(ui->sendPushButton->text() == "发送(S)送")
+    else if(ui->sendPushButton->text() == "发送(S)")
     {
         ui->sendPushButton->setText("发送(Hex)");
     }
