@@ -1,0 +1,335 @@
+QMainWindow
+{
+    border-image:none;
+    border:2px solid rgb(120,120,120);
+    background-color:rgb(255,255,255);
+}
+QPushButton#setPushButton::menu-indicator
+{
+    image:none;
+}
+QPushButton#hexShowPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#hexShowPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(120, 120, 120);
+}
+
+QPushButton#hexShowPushButton:checked
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+
+QPushButton#timeShowPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/time.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#timeShowPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/noCheck/time.png);
+    color:rgb(120, 120, 120);
+}
+QPushButton#timeShowPushButton:checked
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/check/time.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#clearShowPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/clear.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#clearShowPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/check/clear.png);
+    color:rgb(120, 120, 120);
+}
+QPushButton#clearShowPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/clear.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#clearSendPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/check/clear.png);
+    color:rgb(120, 120, 120);
+}
+QPushButton#widgetSetPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/setWidget.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#widgetSetPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/check/setWidget.png);
+    color:rgb(120, 120, 120);
+}
+QPushButton#setPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/expand.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#setPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/check/expand.png);
+    color:rgb(120, 120, 120);
+}
+QPushButton#fileSendPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/expfileand.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#fileSendPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/check/file.png);
+    color:rgb(120, 120, 120);
+}
+QPushButton#rxShowPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#rxShowPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(120, 120, 120);
+}
+QPushButton#rxShowPushButton:checked
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#txShowPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#txShowPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(120, 120, 120);
+}
+QPushButton#txShowPushButton:checked
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#hexSendPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#hexSendPushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(120, 120, 120);
+}
+QPushButton#hexSendPushButton:checked
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+
+QPushButton#minPushButton
+{
+    image: url(:/image/check/min.png);
+}
+QPushButton#maxPushButton
+{
+    image: url(:/image/check/max.png);
+}
+QPushButton#closePushButton
+{
+    image: url(:/image/check/close.png);
+}
+QPushButton#pushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(120, 120, 120);
+}
+QPushButton#pushButton:checked
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#pushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    color:rgb(253, 127, 151);
+}
+QPushButton#pushButton
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/noCheck/open.png);
+    color:rgb(120, 120, 120);
+}
+QPushButton#pushButton:checked
+{
+    background-color:rgb(255,255,255);
+    border-radius:10px;
+    font:20px "Segoe UI Black";
+    image: url(:/image/check/open.png);
+    color:rgb(253, 127, 151);
+}
+QPushButton#pushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    image: url(:/image/check/open.png);
+    font:23px "Segoe UI Black";
+    color:rgb(253, 131, 154);
+}
+
+QTabWidget{
+    background-color:#dce0e6;
+}
+
+QTabWidget::pane{
+    background-color:rgb(255,255,255);
+}
+
+QTabWidget::tab-bar{
+    left: 0px;
+    background-color:rgb(120, 120, 120);
+}
+
+QTabBar::tab{
+    background:#dce0e6;
+    color:rgb(120, 120, 120);
+    font:14px;
+    min-width:50px;
+    min-height:50px;
+    font-family:"微软雅黑";
+    border:1px solid #ddd;
+}
+QTabBar::tab:hover{
+    background:rgb(220, 220, 220);
+}
+
+QTabBar::tab:selected{
+    color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+}
+
+/* 最左边的标签被选中时,外框不变化 */
+QTabBar::tab:first:selected,QTabBar::tab:first:hover{
+    image: url(:/image/check/serial.png);
+}
+QTabBar::tab:first{
+	image: url(:/image/noCheck/serial.png);
+}
+
+QTabBar::tab:last:selected,QTabBar::tab:last:hover{
+    image: url(:/image/check/list.png);
+}
+QTabBar::tab:last{
+	image: url(:/image/check/list.png);
+}
+
+QTabBar::tab:middle:selected,QTabBar::tab:middle:hover{
+    image: url(:/image/check/serialSet.png);
+}
+QTabBar::tab:middle{
+	image: url(:/image/check/serialSet.png);
+}

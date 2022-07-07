@@ -1,0 +1,25 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/qss/default.qss</file>
+        <file>image/check/save.png</file>
+        <file>image/check/bianji.png</file>
+        <file>image/check/expand.png</file>
+        <file>image/check/close.png</file>
+        <file>image/check/open.png</file>
+        <file>image/check/max.png</file>
+        <file>image/noCheck/bianji.png</file>
+        <file>image/noCheck/open.png</file>
+        <file>image/check/list.png</file>
+        <file>image/check/serial.png</file>
+        <file>image/check/serialSet.png</file>
+        <file>image/noCheck/serial.png</file>
+        <file>image/check/min.png</file>
+        <file>image/check/file.png</file>
+        <file>image/check/setWidget.png</file>
+        <file>image/check/time.png</file>
+        <file>image/check/clear.png</file>
+        <file>image/noCheck/time.png</file>
+        <file>image/noCheck/expand.png</file>
+        <file>image/check/locm.png</file>
+    </qresource>
+</RCC>
