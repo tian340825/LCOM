@@ -36,7 +36,7 @@ public:
 
 private:
     enum SendType {
-        sendNULL,
+        sendNULL  = 0,
         sendReturn,//\r
         sendLinFeed,//\n
         sendReturnLinFeed,//\r\n

@@ -17,6 +17,8 @@
 #include <QInputDialog>
 #include "lcombobox.h"
 #include <QFileDialog>
+#include "lpushbutton.h"
+
 namespace Ui {
 class LListWidget;
 }
@@ -43,7 +45,7 @@ private:
     QStringList *tableName;
     QCheckBox *checkBox[50];
     QLabel *label[50];
-    QPushButton *sendPushButton[50];
+    LPushButton *sendPushButton[50];
     QLineEdit *queneEdit[50];
     QLineEdit *msEdit[50];
     QLineEdit *lineEdit[50];

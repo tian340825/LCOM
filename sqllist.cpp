@@ -245,12 +245,13 @@ void SqlList::selectTableQueueLineInfo(const QString &table, QList<int> *id, QLi
 
       //  qDebug() <<"表存在" << "\n ";
 
-                   qDebug() << QString("id: %1, hex: %2 ,str: %3,queue: %4, time: %5")
+                   qDebug() << QString("id: %1, hex: %2 ,str: %3,sendstr %6,queue: %4, time: %5")
                     .arg(query.value("id").toInt())
                      .arg(query.value("hex").toInt())
                      .arg(query.value("str").toString())
                     .arg(query.value("queue").toInt())
-                    .arg(query.value("time").toInt());
+                    .arg(query.value("time").toInt())
+                    .arg(query.value("sendStr").toInt());
                   // qDebug() <<"表存在" << "\n ";
 
 

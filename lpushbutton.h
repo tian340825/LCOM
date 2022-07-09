@@ -18,7 +18,7 @@ public:
 
     bool eventFilter(QObject *obj, QEvent *event);
     void setTwoIcon(const QIcon &checkIcon,const QIcon &noCheckIcon);
-//    void mousePressEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 private:
     QIcon checkIcon;
     QIcon noCheckIcon;

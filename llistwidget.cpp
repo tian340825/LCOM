@@ -75,10 +75,10 @@ void LListWidget::initLineListWidget()
         queneEdit[i] = new QLineEdit(this);
         msEdit[i] = new QLineEdit(this);
         lineEdit[i] = new QLineEdit(this);
-        sendPushButton[i] = new QPushButton(this);
+        sendPushButton[i] = new LPushButton(this);
 
         label[i]->setText(QString("%1").arg(i));
-        sendPushButton[i]->setText(QString("发送"));
+        sendPushButton[i]->setText(QString("发送(\\r\\n)"));
 
         label[i]->setMinimumSize(30,30);
         label[i]->setMaximumSize(30,200);
@@ -94,8 +94,8 @@ void LListWidget::initLineListWidget()
         msEdit[i]->setMinimumSize(60,30);
         msEdit[i]->setMaximumSize(60,200);
 
-        sendPushButton[i]->setMinimumSize(60,30);
-        sendPushButton[i]->setMaximumSize(60,200);
+        sendPushButton[i]->setMinimumSize(120,30);
+        sendPushButton[i]->setMaximumSize(120,200);
 
 
         QRegExp rx1("^\\d\\d?$");
@@ -117,13 +117,53 @@ void LListWidget::initLineListWidget()
         horizontalLayout->addWidget(msEdit[i]);
         horizontalLayout->addWidget(sendPushButton[i]);
 
-        connect(sendPushButton[i],&QPushButton::clicked,this,[=](){
+        connect(sendPushButton[i],&LPushButton::leftButtonClicked,this,[=](){
             qDebug() << QString("%1").arg(lineEdit[i]->text());
             QString str = QString("%1").arg(lineEdit[i]->text());
             bool isHex =checkBox[i]->checkState();
+            if(sendPushButton[i]->text() == "发送(\\n)")
+            {
+                str += "\n";
+            }
+            else if(sendPushButton[i]->text() == "发送(\\r)")
+            {
+                str += "\r";
+            }
+            else if(sendPushButton[i]->text() == "发送(\\r\\n)")
+            {
+                str += "\r\n";
+            }
+            else if(sendPushButton[i]->text() == "发送(\\n\\r)")
+            {
+                str += "\n\r";
+            }
+            else
+            {
+            }
             emit sendDataClicked(str,isHex);
         });
-
+        connect(sendPushButton[i],&LPushButton::rightButtonClicked,this,[=](){
+            if(sendPushButton[i]->text() == "发送")
+            {
+                sendPushButton[i]->setText(QString("发送(\\r)"));
+            }
+            else if(sendPushButton[i]->text() == "发送(\\r)")
+            {
+                sendPushButton[i]->setText(QString("发送(\\n)"));
+            }
+            else if(sendPushButton[i]->text() == "发送(\\n)")
+            {
+                sendPushButton[i]->setText(QString("发送(\\r\\n)"));
+            }
+            else if(sendPushButton[i]->text() == "发送(\\r\\n)")
+            {
+                sendPushButton[i]->setText(QString("发送(\\n\\r)"));
+            }
+            else
+            {
+                sendPushButton[i]->setText(QString("发送"));
+            }
+        });
         ui->verticalLayout->addLayout(horizontalLayout);
        // connect(lineEdit[i],&QLineEdit::textChanged,this,&LListWidget::saveListWidget);
        // connect(msEdit[i],&QLineEdit::textChanged,this,&LListWidget::saveListWidget);
@@ -168,11 +208,32 @@ void LListWidget::cyclicSendSig()
     }
     QString str = QString("%1").arg(strCyclic->first());
     bool isHex = hexCyclic->first();
+
+    if(sendStrCyclic->first() == "发送(\\n)")
+    {
+        str += "\n";
+    }
+    else if(sendStrCyclic->first() == "发送(\\r)")
+    {
+        str += "\r";
+    }
+    else if(sendStrCyclic->first() == "发送(\\r\\n)")
+    {
+        str += "\r\n";
+    }
+    else if(sendStrCyclic->first() == "发送(\\n\\r)")
+    {
+        str += "\n\r";
+    }
+    else
+    {
+    }
     emit sendDataClicked(str,isHex);
     cyclicSendTimer->start(timeCyclic->first());
     strCyclic->removeFirst();
     hexCyclic->removeFirst();
     timeCyclic->removeFirst();
+    sendStrCyclic->removeFirst();
 
 }
 

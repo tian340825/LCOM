@@ -10,7 +10,7 @@ LPushButton::LPushButton(QWidget *parent):QPushButton(parent)
 
 
 }
-#if 0
+#if 1
 void LPushButton::mousePressEvent(QMouseEvent *event)
 {
     if (Qt::LeftButton == event->button())

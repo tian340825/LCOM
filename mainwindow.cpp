@@ -163,7 +163,10 @@ void MainWindow::addWidget1()
 
 void MainWindow::listSendClicked(QString &str, bool &isHex)
 {
+    QString senddata = str;
+
     serialPortSend(str, isHex);
+
 }
 
 
@@ -213,30 +216,7 @@ void MainWindow::serialPortSend(const QString &str,bool &hexSend)
     }
     else
     {
-        //判断是否增加回车换行
-        switch(sendType)
-        {
-            case  sendNULL:
-                break;
-            case  sendReturn:
-                senddata += "\r";
-                showdata += "\r";
-                break;
-            case  sendLinFeed:
-                senddata += "\n";
-                showdata += "\n";
-                break;
-            case  sendReturnLinFeed:
-                senddata += "\r\n";
-                showdata += "\r\n";
-                break;
-            case  sendLinFeedReturn:
-                senddata += "\n\r";
-                showdata += "\n\r";
-                break;
-            default:
-                break;
-        }
+
     }
     qDebug() << QString("%1").arg(QString(senddata));
 
@@ -266,7 +246,9 @@ void MainWindow::serialPortSend(const QString &str,bool &hexSend)
         }
         //ui->showTextEdit->setTextColor(cfgWidget->sendShowcolorValue());
         //在接受窗口显示收到的数据
-        ui->showTextEdit->insertPlainText(receive);
+
+        ui->showTextEdit->append(receive);
+
     }
 
 }
@@ -279,7 +261,7 @@ void MainWindow::serialPortRecv()
      receive=QString(senddata);
      if(ui->timeShowPushButton->isChecked() == true)
      {
-        receive = QString("[%1]:Rx -> %2").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg(receive);
+        receive = QString("\r\n[%1]:Rx -> %2").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg(receive);
      }
 
      if(ui->hexShowPushButton->isChecked() == true)
@@ -394,7 +376,28 @@ void MainWindow::serialCheckTimerSig()
 void MainWindow::sendPushButtonSign()
 {
     bool hexStatus =ui->hexSendPushButton->isChecked();
-    serialPortSend(ui->sendTextEdit->toPlainText().toUtf8(),hexStatus);
+    QString senddata = ui->sendTextEdit->toPlainText().toUtf8();
+    //判断是否增加回车换行
+    switch(sendType)
+    {
+        case  sendNULL:
+            break;
+        case  sendReturn:
+            senddata += "\r";
+            break;
+        case  sendLinFeed:
+            senddata += "\n";
+            break;
+        case  sendReturnLinFeed:
+            senddata += "\r\n";
+            break;
+        case  sendLinFeedReturn:
+            senddata += "\n\r";
+            break;
+        default:
+            break;
+    }
+    serialPortSend(senddata,hexStatus);
 
 }
 
