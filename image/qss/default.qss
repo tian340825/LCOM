@@ -1,8 +1,16 @@
 QMainWindow
 {
     border-image:none;
-    border:2px solid rgb(120,120,120);
-    background-color:rgb(255,255,255);
+    border-radius: 25px rgb(253, 127, 151);;
+    border:20px solid rgb(253, 127, 151);
+    background-color:rgb(253, 127, 151);
+}
+QWidget#setWidget
+{
+    border-image:none;
+    border-radius: 15px;
+    border:2px solid rgb(253, 127, 151);
+    background-color:rgb(253, 127, 151);
 }
 QPushButton#setPushButton::menu-indicator
 {

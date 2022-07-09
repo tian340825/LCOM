@@ -10,6 +10,7 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QFrame>
@@ -41,22 +42,15 @@ public:
     QGridLayout *gridLayout_2;
     QWidget *tileWidget;
     QGridLayout *gridLayout_6;
-    QPushButton *maxPushButton;
-    QSpacerItem *horizontalSpacer_10;
-    QPushButton *widgetSetPushButton;
-    QFrame *line_2;
-    QSpacerItem *horizontalSpacer_8;
-    QSpacerItem *horizontalSpacer_4;
-    QPushButton *closePushButton;
-    QSpacerItem *horizontalSpacer_5;
-    QPushButton *minPushButton;
-    QSpacerItem *horizontalSpacer;
-    QSpacerItem *horizontalSpacer_9;
     QSpacerItem *horizontalSpacer_6;
     QSpacerItem *horizontalSpacer_7;
+    QSpacerItem *horizontalSpacer;
+    QSpacerItem *horizontalSpacer_4;
+    QPushButton *closePushButton;
     QLabel *label_8;
-    QFrame *line_4;
-    QSpacerItem *horizontalSpacer_11;
+    QPushButton *minPushButton;
+    QSpacerItem *horizontalSpacer_5;
+    QPushButton *maxPushButton;
     QSplitter *splitter_4;
     QGroupBox *groupBox_3;
     QGridLayout *gridLayout_3;
@@ -123,125 +117,103 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(800, 600);
+        MainWindow->setSizeIncrement(QSize(0, 0));
+        MainWindow->setBaseSize(QSize(0, 0));
         MainWindow->setMouseTracking(true);
         MainWindow->setTabletTracking(false);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/image/check/locm.png"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setMouseTracking(true);
         gridLayout_4 = new QGridLayout(centralwidget);
         gridLayout_4->setObjectName(QString::fromUtf8("gridLayout_4"));
+        gridLayout_4->setHorizontalSpacing(10);
+        gridLayout_4->setVerticalSpacing(0);
+        gridLayout_4->setContentsMargins(10, 10, 10, 10);
         gridLayout_2 = new QGridLayout();
+        gridLayout_2->setSpacing(0);
         gridLayout_2->setObjectName(QString::fromUtf8("gridLayout_2"));
+        gridLayout_2->setSizeConstraint(QLayout::SetMinimumSize);
         tileWidget = new QWidget(centralwidget);
         tileWidget->setObjectName(QString::fromUtf8("tileWidget"));
-        tileWidget->setMinimumSize(QSize(0, 50));
+        tileWidget->setMinimumSize(QSize(0, 40));
         tileWidget->setMaximumSize(QSize(16777215, 40));
-        tileWidget->setMouseTracking(true);
+        tileWidget->setMouseTracking(false);
+        tileWidget->setTabletTracking(false);
+        tileWidget->setToolTipDuration(0);
         gridLayout_6 = new QGridLayout(tileWidget);
         gridLayout_6->setSpacing(0);
         gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
-        gridLayout_6->setContentsMargins(0, 0, 0, 0);
-        maxPushButton = new QPushButton(tileWidget);
-        maxPushButton->setObjectName(QString::fromUtf8("maxPushButton"));
-        maxPushButton->setMinimumSize(QSize(40, 40));
-        maxPushButton->setMaximumSize(QSize(40, 40));
-        maxPushButton->setMouseTracking(true);
-        maxPushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
-"border:none"));
-        maxPushButton->setAutoExclusive(false);
+        gridLayout_6->setSizeConstraint(QLayout::SetMinimumSize);
+        gridLayout_6->setContentsMargins(0, 0, 0, 1);
+        horizontalSpacer_6 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        gridLayout_6->addWidget(maxPushButton, 0, 13, 1, 1);
+        gridLayout_6->addItem(horizontalSpacer_6, 0, 5, 1, 1);
 
-        horizontalSpacer_10 = new QSpacerItem(5, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+        horizontalSpacer_7 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        gridLayout_6->addItem(horizontalSpacer_10, 0, 8, 1, 1);
+        gridLayout_6->addItem(horizontalSpacer_7, 0, 7, 1, 1);
 
-        widgetSetPushButton = new QPushButton(tileWidget);
-        widgetSetPushButton->setObjectName(QString::fromUtf8("widgetSetPushButton"));
-        widgetSetPushButton->setMaximumSize(QSize(40, 40));
-        widgetSetPushButton->setMouseTracking(true);
-        widgetSetPushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
-"border:none"));
+        horizontalSpacer = new QSpacerItem(40, 40, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
-        gridLayout_6->addWidget(widgetSetPushButton, 0, 6, 1, 1);
-
-        line_2 = new QFrame(tileWidget);
-        line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setMouseTracking(true);
-        line_2->setFrameShape(QFrame::VLine);
-        line_2->setFrameShadow(QFrame::Sunken);
-
-        gridLayout_6->addWidget(line_2, 0, 4, 1, 1);
-
-        horizontalSpacer_8 = new QSpacerItem(5, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_8, 0, 3, 1, 1);
+        gridLayout_6->addItem(horizontalSpacer, 0, 3, 1, 1);
 
         horizontalSpacer_4 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        gridLayout_6->addItem(horizontalSpacer_4, 0, 16, 1, 1);
+        gridLayout_6->addItem(horizontalSpacer_4, 0, 9, 1, 1);
 
         closePushButton = new QPushButton(tileWidget);
         closePushButton->setObjectName(QString::fromUtf8("closePushButton"));
         closePushButton->setMinimumSize(QSize(40, 40));
         closePushButton->setMaximumSize(QSize(40, 40));
-        closePushButton->setMouseTracking(true);
+        closePushButton->setMouseTracking(false);
+        closePushButton->setTabletTracking(false);
         closePushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "border:none"));
         closePushButton->setCheckable(false);
 
-        gridLayout_6->addWidget(closePushButton, 0, 15, 1, 1);
+        gridLayout_6->addWidget(closePushButton, 0, 8, 1, 1);
 
-        horizontalSpacer_5 = new QSpacerItem(1, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+        label_8 = new QLabel(tileWidget);
+        label_8->setObjectName(QString::fromUtf8("label_8"));
+        label_8->setMinimumSize(QSize(80, 0));
+        label_8->setMouseTracking(false);
+        label_8->setTabletTracking(false);
+        label_8->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Microsoft YaHei UI\";\n"
+"color:rgb(253, 127, 151);"));
+        label_8->setLineWidth(0);
+        label_8->setIndent(0);
 
-        gridLayout_6->addItem(horizontalSpacer_5, 0, 0, 1, 1);
+        gridLayout_6->addWidget(label_8, 0, 2, 1, 1);
 
         minPushButton = new QPushButton(tileWidget);
         minPushButton->setObjectName(QString::fromUtf8("minPushButton"));
         minPushButton->setMinimumSize(QSize(40, 40));
         minPushButton->setMaximumSize(QSize(40, 40));
-        minPushButton->setMouseTracking(true);
+        minPushButton->setMouseTracking(false);
+        minPushButton->setTabletTracking(false);
         minPushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "border:none"));
 
-        gridLayout_6->addWidget(minPushButton, 0, 11, 1, 1);
+        gridLayout_6->addWidget(minPushButton, 0, 4, 1, 1);
 
-        horizontalSpacer = new QSpacerItem(40, 40, QSizePolicy::Expanding, QSizePolicy::Minimum);
+        horizontalSpacer_5 = new QSpacerItem(1, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        gridLayout_6->addItem(horizontalSpacer, 0, 10, 1, 1);
+        gridLayout_6->addItem(horizontalSpacer_5, 0, 0, 1, 1);
 
-        horizontalSpacer_9 = new QSpacerItem(5, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
+        maxPushButton = new QPushButton(tileWidget);
+        maxPushButton->setObjectName(QString::fromUtf8("maxPushButton"));
+        maxPushButton->setMinimumSize(QSize(40, 40));
+        maxPushButton->setMaximumSize(QSize(40, 40));
+        maxPushButton->setMouseTracking(false);
+        maxPushButton->setTabletTracking(false);
+        maxPushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"border:none"));
+        maxPushButton->setAutoExclusive(false);
 
-        gridLayout_6->addItem(horizontalSpacer_9, 0, 5, 1, 1);
-
-        horizontalSpacer_6 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_6, 0, 12, 1, 1);
-
-        horizontalSpacer_7 = new QSpacerItem(20, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_7, 0, 14, 1, 1);
-
-        label_8 = new QLabel(tileWidget);
-        label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setMinimumSize(QSize(80, 0));
-        label_8->setMouseTracking(true);
-        label_8->setStyleSheet(QString::fromUtf8("font: 700 12pt \"Microsoft YaHei UI\";\n"
-"color:rgb(253, 127, 151);"));
-
-        gridLayout_6->addWidget(label_8, 0, 2, 1, 1);
-
-        line_4 = new QFrame(tileWidget);
-        line_4->setObjectName(QString::fromUtf8("line_4"));
-        line_4->setMouseTracking(true);
-        line_4->setFrameShape(QFrame::VLine);
-        line_4->setFrameShadow(QFrame::Sunken);
-
-        gridLayout_6->addWidget(line_4, 0, 7, 1, 1);
-
-        horizontalSpacer_11 = new QSpacerItem(5, 20, QSizePolicy::Minimum, QSizePolicy::Minimum);
-
-        gridLayout_6->addItem(horizontalSpacer_11, 0, 9, 1, 1);
+        gridLayout_6->addWidget(maxPushButton, 0, 6, 1, 1);
 
 
         gridLayout_2->addWidget(tileWidget, 0, 0, 1, 1);
@@ -249,7 +221,8 @@ public:
         splitter_4 = new QSplitter(centralwidget);
         splitter_4->setObjectName(QString::fromUtf8("splitter_4"));
         splitter_4->setMinimumSize(QSize(50, 0));
-        splitter_4->setMouseTracking(true);
+        splitter_4->setMouseTracking(false);
+        splitter_4->setTabletTracking(false);
         splitter_4->setStyleSheet(QString::fromUtf8("\n"
 "QPushButton\n"
 "{\n"
@@ -320,7 +293,8 @@ public:
         sizePolicy.setHeightForWidth(groupBox_3->sizePolicy().hasHeightForWidth());
         groupBox_3->setSizePolicy(sizePolicy);
         groupBox_3->setMinimumSize(QSize(50, 0));
-        groupBox_3->setMouseTracking(true);
+        groupBox_3->setMouseTracking(false);
+        groupBox_3->setTabletTracking(false);
         gridLayout_3 = new QGridLayout(groupBox_3);
         gridLayout_3->setSpacing(0);
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
@@ -336,7 +310,8 @@ public:
         tabWidget_Main->setSizePolicy(sizePolicy1);
         tabWidget_Main->setMinimumSize(QSize(50, 0));
         tabWidget_Main->setMaximumSize(QSize(16777215, 16777215));
-        tabWidget_Main->setMouseTracking(true);
+        tabWidget_Main->setMouseTracking(false);
+        tabWidget_Main->setTabletTracking(false);
         tabWidget_Main->setFocusPolicy(Qt::NoFocus);
         tabWidget_Main->setContextMenuPolicy(Qt::NoContextMenu);
         tabWidget_Main->setLayoutDirection(Qt::LeftToRight);
@@ -364,7 +339,8 @@ public:
         label_7 = new QLabel(tab_2);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setMaximumSize(QSize(16777215, 30));
-        label_7->setMouseTracking(true);
+        label_7->setMouseTracking(false);
+        label_7->setTabletTracking(false);
         label_7->setStyleSheet(QString::fromUtf8("font: 9pt \"Microsoft YaHei UI\";\n"
 "color:rgb(253, 127, 151);"));
 
@@ -373,7 +349,8 @@ public:
         line_5 = new QFrame(tab_2);
         line_5->setObjectName(QString::fromUtf8("line_5"));
         line_5->setMaximumSize(QSize(16777215, 5));
-        line_5->setMouseTracking(true);
+        line_5->setMouseTracking(false);
+        line_5->setTabletTracking(false);
         line_5->setFrameShape(QFrame::HLine);
         line_5->setFrameShadow(QFrame::Sunken);
 
@@ -387,13 +364,15 @@ public:
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         label = new QLabel(tab_2);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setMouseTracking(true);
+        label->setMouseTracking(false);
+        label->setTabletTracking(false);
 
         horizontalLayout_3->addWidget(label);
 
         comboBox = new LComboBox(tab_2);
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setMouseTracking(true);
+        comboBox->setMouseTracking(false);
+        comboBox->setTabletTracking(false);
 
         horizontalLayout_3->addWidget(comboBox);
 
@@ -404,7 +383,8 @@ public:
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
         baudRateLabel = new QLabel(tab_2);
         baudRateLabel->setObjectName(QString::fromUtf8("baudRateLabel"));
-        baudRateLabel->setMouseTracking(true);
+        baudRateLabel->setMouseTracking(false);
+        baudRateLabel->setTabletTracking(false);
 
         horizontalLayout_4->addWidget(baudRateLabel);
 
@@ -422,7 +402,8 @@ public:
         baudRateBox->setMaximumSize(QSize(16777215, 16777215));
         baudRateBox->setSizeIncrement(QSize(0, 0));
         baudRateBox->setBaseSize(QSize(0, 0));
-        baudRateBox->setMouseTracking(true);
+        baudRateBox->setMouseTracking(false);
+        baudRateBox->setTabletTracking(false);
 
         horizontalLayout_4->addWidget(baudRateBox);
 
@@ -433,7 +414,8 @@ public:
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         parityBitsLabel = new QLabel(tab_2);
         parityBitsLabel->setObjectName(QString::fromUtf8("parityBitsLabel"));
-        parityBitsLabel->setMouseTracking(true);
+        parityBitsLabel->setMouseTracking(false);
+        parityBitsLabel->setTabletTracking(false);
 
         horizontalLayout_5->addWidget(parityBitsLabel);
 
@@ -444,7 +426,8 @@ public:
         parityBitsBox->addItem(QString());
         parityBitsBox->addItem(QString());
         parityBitsBox->setObjectName(QString::fromUtf8("parityBitsBox"));
-        parityBitsBox->setMouseTracking(true);
+        parityBitsBox->setMouseTracking(false);
+        parityBitsBox->setTabletTracking(false);
 
         horizontalLayout_5->addWidget(parityBitsBox);
 
@@ -455,7 +438,8 @@ public:
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         stopBitLabel = new QLabel(tab_2);
         stopBitLabel->setObjectName(QString::fromUtf8("stopBitLabel"));
-        stopBitLabel->setMouseTracking(true);
+        stopBitLabel->setMouseTracking(false);
+        stopBitLabel->setTabletTracking(false);
 
         horizontalLayout_6->addWidget(stopBitLabel);
 
@@ -464,7 +448,8 @@ public:
         stopBitBox->addItem(QString());
         stopBitBox->addItem(QString());
         stopBitBox->setObjectName(QString::fromUtf8("stopBitBox"));
-        stopBitBox->setMouseTracking(true);
+        stopBitBox->setMouseTracking(false);
+        stopBitBox->setTabletTracking(false);
 
         horizontalLayout_6->addWidget(stopBitBox);
 
@@ -475,7 +460,8 @@ public:
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         dataBitsLabel = new QLabel(tab_2);
         dataBitsLabel->setObjectName(QString::fromUtf8("dataBitsLabel"));
-        dataBitsLabel->setMouseTracking(true);
+        dataBitsLabel->setMouseTracking(false);
+        dataBitsLabel->setTabletTracking(false);
 
         horizontalLayout_7->addWidget(dataBitsLabel);
 
@@ -485,7 +471,8 @@ public:
         dataBitsBox->addItem(QString());
         dataBitsBox->addItem(QString());
         dataBitsBox->setObjectName(QString::fromUtf8("dataBitsBox"));
-        dataBitsBox->setMouseTracking(true);
+        dataBitsBox->setMouseTracking(false);
+        dataBitsBox->setTabletTracking(false);
 
         horizontalLayout_7->addWidget(dataBitsBox);
 
@@ -496,7 +483,8 @@ public:
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
         timeDispLabel = new QLabel(tab_2);
         timeDispLabel->setObjectName(QString::fromUtf8("timeDispLabel"));
-        timeDispLabel->setMouseTracking(true);
+        timeDispLabel->setMouseTracking(false);
+        timeDispLabel->setTabletTracking(false);
 
         horizontalLayout_8->addWidget(timeDispLabel);
 
@@ -504,7 +492,8 @@ public:
         timeDispBox->addItem(QString());
         timeDispBox->addItem(QString());
         timeDispBox->setObjectName(QString::fromUtf8("timeDispBox"));
-        timeDispBox->setMouseTracking(true);
+        timeDispBox->setMouseTracking(false);
+        timeDispBox->setTabletTracking(false);
 
         horizontalLayout_8->addWidget(timeDispBox);
 
@@ -515,13 +504,15 @@ public:
         horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
         timerLabel = new QLabel(tab_2);
         timerLabel->setObjectName(QString::fromUtf8("timerLabel"));
-        timerLabel->setMouseTracking(true);
+        timerLabel->setMouseTracking(false);
+        timerLabel->setTabletTracking(false);
 
         horizontalLayout_9->addWidget(timerLabel);
 
         timerSpinBox = new QSpinBox(tab_2);
         timerSpinBox->setObjectName(QString::fromUtf8("timerSpinBox"));
-        timerSpinBox->setMouseTracking(true);
+        timerSpinBox->setMouseTracking(false);
+        timerSpinBox->setTabletTracking(false);
         timerSpinBox->setMinimum(20);
         timerSpinBox->setMaximum(2000);
         timerSpinBox->setSingleStep(10);
@@ -553,7 +544,8 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(splitter_3->sizePolicy().hasHeightForWidth());
         splitter_3->setSizePolicy(sizePolicy2);
-        splitter_3->setMouseTracking(true);
+        splitter_3->setMouseTracking(false);
+        splitter_3->setTabletTracking(false);
         splitter_3->setLineWidth(0);
         splitter_3->setOrientation(Qt::Vertical);
         splitter_3->setOpaqueResize(true);
@@ -563,7 +555,8 @@ public:
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
         groupBox->setMinimumSize(QSize(30, 30));
         groupBox->setMaximumSize(QSize(16777215, 16777215));
-        groupBox->setMouseTracking(true);
+        groupBox->setMouseTracking(false);
+        groupBox->setTabletTracking(false);
         gridLayout = new QGridLayout(groupBox);
         gridLayout->setSpacing(0);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
@@ -575,7 +568,8 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(splitter->sizePolicy().hasHeightForWidth());
         splitter->setSizePolicy(sizePolicy3);
-        splitter->setMouseTracking(true);
+        splitter->setMouseTracking(false);
+        splitter->setTabletTracking(false);
         splitter->setLineWidth(0);
         splitter->setOrientation(Qt::Vertical);
         splitter->setHandleWidth(0);
@@ -583,12 +577,14 @@ public:
         showTextEdit = new QTextEdit(splitter);
         showTextEdit->setObjectName(QString::fromUtf8("showTextEdit"));
         showTextEdit->setMinimumSize(QSize(0, 0));
-        showTextEdit->setMouseTracking(true);
+        showTextEdit->setMouseTracking(false);
+        showTextEdit->setTabletTracking(false);
         splitter->addWidget(showTextEdit);
         sendTextEdit = new QTextEdit(splitter);
         sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
         sendTextEdit->setMinimumSize(QSize(0, 0));
-        sendTextEdit->setMouseTracking(true);
+        sendTextEdit->setMouseTracking(false);
+        sendTextEdit->setTabletTracking(false);
         sendTextEdit->setLayoutDirection(Qt::LeftToRight);
         splitter->addWidget(sendTextEdit);
 
@@ -601,7 +597,8 @@ public:
         hexSendPushButton->setObjectName(QString::fromUtf8("hexSendPushButton"));
         hexSendPushButton->setMinimumSize(QSize(50, 50));
         hexSendPushButton->setMaximumSize(QSize(50, 50));
-        hexSendPushButton->setMouseTracking(true);
+        hexSendPushButton->setMouseTracking(false);
+        hexSendPushButton->setTabletTracking(false);
         hexSendPushButton->setCheckable(true);
         hexSendPushButton->setChecked(false);
 
@@ -611,7 +608,8 @@ public:
         line_10->setObjectName(QString::fromUtf8("line_10"));
         line_10->setMinimumSize(QSize(20, 20));
         line_10->setMaximumSize(QSize(20, 20));
-        line_10->setMouseTracking(true);
+        line_10->setMouseTracking(false);
+        line_10->setTabletTracking(false);
         line_10->setFrameShape(QFrame::VLine);
         line_10->setFrameShadow(QFrame::Sunken);
 
@@ -621,7 +619,8 @@ public:
         fileSendPushButton->setObjectName(QString::fromUtf8("fileSendPushButton"));
         fileSendPushButton->setMinimumSize(QSize(50, 50));
         fileSendPushButton->setMaximumSize(QSize(50, 50));
-        fileSendPushButton->setMouseTracking(true);
+        fileSendPushButton->setMouseTracking(false);
+        fileSendPushButton->setTabletTracking(false);
         fileSendPushButton->setCheckable(false);
 
         horizontalLayout->addWidget(fileSendPushButton);
@@ -630,7 +629,8 @@ public:
         line->setObjectName(QString::fromUtf8("line"));
         line->setMinimumSize(QSize(20, 20));
         line->setMaximumSize(QSize(20, 20));
-        line->setMouseTracking(true);
+        line->setMouseTracking(false);
+        line->setTabletTracking(false);
         line->setFrameShape(QFrame::VLine);
         line->setFrameShadow(QFrame::Sunken);
 
@@ -640,7 +640,8 @@ public:
         clearSendPushButton->setObjectName(QString::fromUtf8("clearSendPushButton"));
         clearSendPushButton->setMinimumSize(QSize(50, 50));
         clearSendPushButton->setMaximumSize(QSize(50, 50));
-        clearSendPushButton->setMouseTracking(true);
+        clearSendPushButton->setMouseTracking(false);
+        clearSendPushButton->setTabletTracking(false);
 
         horizontalLayout->addWidget(clearSendPushButton);
 
@@ -648,7 +649,8 @@ public:
         line_9->setObjectName(QString::fromUtf8("line_9"));
         line_9->setMinimumSize(QSize(20, 20));
         line_9->setMaximumSize(QSize(20, 20));
-        line_9->setMouseTracking(true);
+        line_9->setMouseTracking(false);
+        line_9->setTabletTracking(false);
         line_9->setFrameShape(QFrame::VLine);
         line_9->setFrameShadow(QFrame::Sunken);
 
@@ -658,7 +660,8 @@ public:
         SendTimerLineEdit->setObjectName(QString::fromUtf8("SendTimerLineEdit"));
         SendTimerLineEdit->setMinimumSize(QSize(0, 50));
         SendTimerLineEdit->setMaximumSize(QSize(80, 50));
-        SendTimerLineEdit->setMouseTracking(true);
+        SendTimerLineEdit->setMouseTracking(false);
+        SendTimerLineEdit->setTabletTracking(false);
         SendTimerLineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "border:none"));
 
@@ -668,7 +671,8 @@ public:
         line_8->setObjectName(QString::fromUtf8("line_8"));
         line_8->setMinimumSize(QSize(20, 20));
         line_8->setMaximumSize(QSize(20, 20));
-        line_8->setMouseTracking(true);
+        line_8->setMouseTracking(false);
+        line_8->setTabletTracking(false);
         line_8->setFrameShape(QFrame::VLine);
         line_8->setFrameShadow(QFrame::Sunken);
 
@@ -682,7 +686,8 @@ public:
         sendPushButton->setObjectName(QString::fromUtf8("sendPushButton"));
         sendPushButton->setMinimumSize(QSize(80, 40));
         sendPushButton->setMaximumSize(QSize(150, 50));
-        sendPushButton->setMouseTracking(true);
+        sendPushButton->setMouseTracking(false);
+        sendPushButton->setTabletTracking(false);
         sendPushButton->setPopupMode(QToolButton::MenuButtonPopup);
         sendPushButton->setToolButtonStyle(Qt::ToolButtonIconOnly);
 
@@ -698,7 +703,8 @@ public:
         hexShowPushButton->setObjectName(QString::fromUtf8("hexShowPushButton"));
         hexShowPushButton->setMinimumSize(QSize(50, 50));
         hexShowPushButton->setMaximumSize(QSize(50, 50));
-        hexShowPushButton->setMouseTracking(true);
+        hexShowPushButton->setMouseTracking(false);
+        hexShowPushButton->setTabletTracking(false);
         hexShowPushButton->setCheckable(true);
         hexShowPushButton->setChecked(false);
 
@@ -708,7 +714,8 @@ public:
         line_3->setObjectName(QString::fromUtf8("line_3"));
         line_3->setMinimumSize(QSize(20, 20));
         line_3->setMaximumSize(QSize(20, 20));
-        line_3->setMouseTracking(true);
+        line_3->setMouseTracking(false);
+        line_3->setTabletTracking(false);
         line_3->setFrameShape(QFrame::VLine);
         line_3->setFrameShadow(QFrame::Sunken);
 
@@ -718,7 +725,8 @@ public:
         timeShowPushButton->setObjectName(QString::fromUtf8("timeShowPushButton"));
         timeShowPushButton->setMinimumSize(QSize(50, 50));
         timeShowPushButton->setMaximumSize(QSize(50, 50));
-        timeShowPushButton->setMouseTracking(true);
+        timeShowPushButton->setMouseTracking(false);
+        timeShowPushButton->setTabletTracking(false);
         timeShowPushButton->setCheckable(true);
         timeShowPushButton->setChecked(true);
 
@@ -728,7 +736,8 @@ public:
         rxShowPushButton->setObjectName(QString::fromUtf8("rxShowPushButton"));
         rxShowPushButton->setMinimumSize(QSize(50, 50));
         rxShowPushButton->setMaximumSize(QSize(50, 50));
-        rxShowPushButton->setMouseTracking(true);
+        rxShowPushButton->setMouseTracking(false);
+        rxShowPushButton->setTabletTracking(false);
         rxShowPushButton->setCheckable(true);
         rxShowPushButton->setChecked(true);
 
@@ -738,7 +747,8 @@ public:
         txShowPushButton->setObjectName(QString::fromUtf8("txShowPushButton"));
         txShowPushButton->setMinimumSize(QSize(50, 50));
         txShowPushButton->setMaximumSize(QSize(50, 50));
-        txShowPushButton->setMouseTracking(true);
+        txShowPushButton->setMouseTracking(false);
+        txShowPushButton->setTabletTracking(false);
         txShowPushButton->setCheckable(true);
         txShowPushButton->setChecked(true);
 
@@ -748,7 +758,8 @@ public:
         line_6->setObjectName(QString::fromUtf8("line_6"));
         line_6->setMinimumSize(QSize(20, 20));
         line_6->setMaximumSize(QSize(20, 20));
-        line_6->setMouseTracking(true);
+        line_6->setMouseTracking(false);
+        line_6->setTabletTracking(false);
         line_6->setFrameShape(QFrame::VLine);
         line_6->setFrameShadow(QFrame::Sunken);
 
@@ -762,7 +773,8 @@ public:
         clearShowPushButton->setObjectName(QString::fromUtf8("clearShowPushButton"));
         clearShowPushButton->setMinimumSize(QSize(50, 50));
         clearShowPushButton->setMaximumSize(QSize(50, 50));
-        clearShowPushButton->setMouseTracking(true);
+        clearShowPushButton->setMouseTracking(false);
+        clearShowPushButton->setTabletTracking(false);
 
         horizontalLayout_2->addWidget(clearShowPushButton);
 
@@ -783,7 +795,7 @@ public:
         QObject::connect(closePushButton, SIGNAL(clicked()), MainWindow, SLOT(close()));
         QObject::connect(clearSendPushButton, SIGNAL(clicked()), sendTextEdit, SLOT(clear()));
         QObject::connect(clearShowPushButton, SIGNAL(clicked()), showTextEdit, SLOT(clear()));
-        QObject::connect(maxPushButton, SIGNAL(clicked()), MainWindow, SLOT(showMaximized()));
+        QObject::connect(maxPushButton, SIGNAL(clicked()), MainWindow, SLOT(showMinimized()));
         QObject::connect(minPushButton, SIGNAL(clicked()), MainWindow, SLOT(showMinimized()));
 
         tabWidget_Main->setCurrentIndex(1);
@@ -795,11 +807,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        maxPushButton->setText(QString());
-        widgetSetPushButton->setText(QString());
         closePushButton->setText(QString());
-        minPushButton->setText(QString());
         label_8->setText(QCoreApplication::translate("MainWindow", "   LCOM 1.0", nullptr));
+        minPushButton->setText(QString());
+        maxPushButton->setText(QString());
         groupBox_3->setTitle(QString());
         tabWidget_Main->setTabText(tabWidget_Main->indexOf(tab), QString());
         label_7->setText(QCoreApplication::translate("MainWindow", "\344\270\262\345\217\243\345\217\202\346\225\260\350\256\276\347\275\256", nullptr));

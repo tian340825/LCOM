@@ -145,9 +145,10 @@ void LListWidget::cyclicSendSig()
         qDebug() << "isEmpty";
         sqlist->selectTableQueueLineInfo(ui->comComboBox->currentText(),idCyclic,hexCyclic,strCyclic,sendStrCyclic,cyclicCount,timeCyclic);
     }
-    qDebug() << strCyclic;
+
     if(strCyclic->isEmpty())
     {
+        qDebug() << cyclicCount;
 
         if(cyclicCount == 1)
         {

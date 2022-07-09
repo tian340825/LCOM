@@ -240,7 +240,7 @@ void SqlList::selectTableQueueLineInfo(const QString &table, QList<int> *id, QLi
     QSqlQuery query(sqlDatabase);
      query.exec(sql);
 
-    if(query.next())
+    while(query.next())
     {                  // [5] 遍历查询结果
 
       //  qDebug() <<"表存在" << "\n ";

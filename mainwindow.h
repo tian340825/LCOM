@@ -19,12 +19,12 @@
 /*---QTimer--*/
 #include <QTimer>
 /*---QDebug--*/
-#include "setwidget.h"
+//#include "setconfigwidget.h"
 namespace Ui {
 class MainWindow;
 }
 #define MAX_CHECK_FLAG 20
-class MainWindow : public FramelessWindow
+class MainWindow : public FramelessMainWindow
 {
     Q_OBJECT
 
@@ -44,7 +44,7 @@ private:
     };
 
     Ui::MainWindow *ui;
-    setWidget *setwidget;
+   // setConfigWidget *setwidget;
     /**串口********/
     SendType sendType = sendReturnLinFeed;
     QSerialPort *serial;
@@ -53,6 +53,7 @@ private:
     QTimer *serialCheckTimer;
     int reCheckFlag = 0;
     bool isSerialOpen = false;
+    bool isSendFile = false;
     void serialPortSend(const QString &str,bool &hexSend);
     void serialPortRecv();
     void serialPortRecvSign();
@@ -67,5 +68,6 @@ private slots:
 
     void on_rxShowPushButton_clicked();
     void on_widgetSetPushButton_clicked();
+    void on_fileSendPushButton_clicked();
 };
 #endif // MAINWINDOW_H

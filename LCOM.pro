@@ -16,7 +16,6 @@ SOURCES += \
     ltabwidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    setwidget.cpp \
     sqllist.cpp
 
 HEADERS += \
@@ -26,13 +25,11 @@ HEADERS += \
     lpushbutton.h \
     ltabwidget.h \
     mainwindow.h \
-    setwidget.h \
     sqllist.h
 
 FORMS += \
     llistwidget.ui \
-    mainwindow.ui \
-    setwidget.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

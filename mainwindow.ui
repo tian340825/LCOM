@@ -10,6 +10,18 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
+  </property>
   <property name="mouseTracking">
    <bool>true</bool>
   </property>
@@ -19,19 +31,47 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="image.qrc">
+    <normaloff>:/image/check/locm.png</normaloff>:/image/check/locm.png</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="mouseTracking">
     <bool>true</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout_4">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>10</number>
+    </property>
+    <property name="horizontalSpacing">
+     <number>10</number>
+    </property>
+    <property name="verticalSpacing">
+     <number>0</number>
+    </property>
     <item row="0" column="0">
      <layout class="QGridLayout" name="gridLayout_2">
+      <property name="sizeConstraint">
+       <enum>QLayout::SetMinimumSize</enum>
+      </property>
+      <property name="spacing">
+       <number>0</number>
+      </property>
       <item row="0" column="0">
        <widget class="QWidget" name="tileWidget" native="true">
         <property name="minimumSize">
          <size>
           <width>0</width>
-          <height>50</height>
+          <height>40</height>
          </size>
         </property>
         <property name="maximumSize">
@@ -41,9 +81,18 @@
          </size>
         </property>
         <property name="mouseTracking">
-         <bool>true</bool>
+         <bool>false</bool>
+        </property>
+        <property name="tabletTracking">
+         <bool>false</bool>
+        </property>
+        <property name="toolTipDuration">
+         <number>0</number>
         </property>
         <layout class="QGridLayout" name="gridLayout_6">
+         <property name="sizeConstraint">
+          <enum>QLayout::SetMinimumSize</enum>
+         </property>
          <property name="leftMargin">
           <number>0</number>
          </property>
@@ -54,112 +103,18 @@
           <number>0</number>
          </property>
          <property name="bottomMargin">
-          <number>0</number>
+          <number>1</number>
          </property>
          <property name="spacing">
           <number>0</number>
          </property>
-         <item row="0" column="13">
-          <widget class="QPushButton" name="maxPushButton">
-           <property name="minimumSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
+         <item row="0" column="5">
+          <spacer name="horizontalSpacer_6">
            <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);
-border:none</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="autoExclusive">
             <bool>false</bool>
            </property>
-          </widget>
-         </item>
-         <item row="0" column="8">
-          <spacer name="horizontalSpacer_10">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>5</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="6">
-          <widget class="QPushButton" name="widgetSetPushButton">
-           <property name="maximumSize">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">background-color: rgb(255, 255, 255);
-border:none</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="4">
-          <widget class="Line" name="line_2">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="3">
-          <spacer name="horizontalSpacer_8">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>5</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="16">
-          <spacer name="horizontalSpacer_4">
-           <property name="mouseTracking">
-            <bool>true</bool>
+           <property name="tabletTracking">
+            <bool>false</bool>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -175,7 +130,70 @@ border:none</string>
            </property>
           </spacer>
          </item>
-         <item row="0" column="15">
+         <item row="0" column="7">
+          <spacer name="horizontalSpacer_7">
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="3">
+          <spacer name="horizontalSpacer">
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="9">
+          <spacer name="horizontalSpacer_4">
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType">
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="8">
           <widget class="QPushButton" name="closePushButton">
            <property name="minimumSize">
             <size>
@@ -190,7 +208,10 @@ border:none</string>
             </size>
            </property>
            <property name="mouseTracking">
-            <bool>true</bool>
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);
@@ -204,10 +225,71 @@ border:none</string>
            </property>
           </widget>
          </item>
+         <item row="0" column="2">
+          <widget class="QLabel" name="label_8">
+           <property name="minimumSize">
+            <size>
+             <width>80</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">font: 700 12pt &quot;Microsoft YaHei UI&quot;;
+color:rgb(253, 127, 151);</string>
+           </property>
+           <property name="lineWidth">
+            <number>0</number>
+           </property>
+           <property name="text">
+            <string>   LCOM 1.0</string>
+           </property>
+           <property name="indent">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="4">
+          <widget class="QPushButton" name="minPushButton">
+           <property name="minimumSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>40</width>
+             <height>40</height>
+            </size>
+           </property>
+           <property name="mouseTracking">
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(255, 255, 255);
+border:none</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+          </widget>
+         </item>
          <item row="0" column="0">
           <spacer name="horizontalSpacer_5">
            <property name="mouseTracking">
-            <bool>true</bool>
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
            </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -223,8 +305,8 @@ border:none</string>
            </property>
           </spacer>
          </item>
-         <item row="0" column="11">
-          <widget class="QPushButton" name="minPushButton">
+         <item row="0" column="6">
+          <widget class="QPushButton" name="maxPushButton">
            <property name="minimumSize">
             <size>
              <width>40</width>
@@ -238,7 +320,10 @@ border:none</string>
             </size>
            </property>
            <property name="mouseTracking">
-            <bool>true</bool>
+            <bool>false</bool>
+           </property>
+           <property name="tabletTracking">
+            <bool>false</bool>
            </property>
            <property name="styleSheet">
             <string notr="true">background-color: rgb(255, 255, 255);
@@ -247,129 +332,10 @@ border:none</string>
            <property name="text">
             <string/>
            </property>
-          </widget>
-         </item>
-         <item row="0" column="10">
-          <spacer name="horizontalSpacer">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="5">
-          <spacer name="horizontalSpacer_9">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>5</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="12">
-          <spacer name="horizontalSpacer_6">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="14">
-          <spacer name="horizontalSpacer_7">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item row="0" column="2">
-          <widget class="QLabel" name="label_8">
-           <property name="minimumSize">
-            <size>
-             <width>80</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="styleSheet">
-            <string notr="true">font: 700 12pt &quot;Microsoft YaHei UI&quot;;
-color:rgb(253, 127, 151);</string>
-           </property>
-           <property name="text">
-            <string>   LCOM 1.0</string>
+           <property name="autoExclusive">
+            <bool>false</bool>
            </property>
           </widget>
-         </item>
-         <item row="0" column="7">
-          <widget class="Line" name="line_4">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="9">
-          <spacer name="horizontalSpacer_11">
-           <property name="mouseTracking">
-            <bool>true</bool>
-           </property>
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>5</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </widget>
@@ -383,7 +349,10 @@ color:rgb(253, 127, 151);</string>
          </size>
         </property>
         <property name="mouseTracking">
-         <bool>true</bool>
+         <bool>false</bool>
+        </property>
+        <property name="tabletTracking">
+         <bool>false</bool>
         </property>
         <property name="styleSheet">
          <string notr="true">
@@ -467,7 +436,10 @@ QPushButton#pushPushButton:hover
           </size>
          </property>
          <property name="mouseTracking">
-          <bool>true</bool>
+          <bool>false</bool>
+         </property>
+         <property name="tabletTracking">
+          <bool>false</bool>
          </property>
          <property name="title">
           <string/>
@@ -515,7 +487,10 @@ QPushButton#pushPushButton:hover
              </size>
             </property>
             <property name="mouseTracking">
-             <bool>true</bool>
+             <bool>false</bool>
+            </property>
+            <property name="tabletTracking">
+             <bool>false</bool>
             </property>
             <property name="focusPolicy">
              <enum>Qt::NoFocus</enum>
@@ -605,7 +580,10 @@ QPushButton#pushPushButton:hover
                  </size>
                 </property>
                 <property name="mouseTracking">
-                 <bool>true</bool>
+                 <bool>false</bool>
+                </property>
+                <property name="tabletTracking">
+                 <bool>false</bool>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">font: 9pt &quot;Microsoft YaHei UI&quot;;
@@ -625,7 +603,10 @@ color:rgb(253, 127, 151);</string>
                  </size>
                 </property>
                 <property name="mouseTracking">
-                 <bool>true</bool>
+                 <bool>false</bool>
+                </property>
+                <property name="tabletTracking">
+                 <bool>false</bool>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Horizontal</enum>
@@ -635,7 +616,10 @@ color:rgb(253, 127, 151);</string>
               <item>
                <spacer name="verticalSpacer">
                 <property name="mouseTracking">
-                 <bool>true</bool>
+                 <bool>false</bool>
+                </property>
+                <property name="tabletTracking">
+                 <bool>false</bool>
                 </property>
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -656,7 +640,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QLabel" name="label">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>端口号</string>
@@ -666,7 +653,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="LComboBox" name="comboBox">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                  </widget>
                 </item>
@@ -677,7 +667,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QLabel" name="baudRateLabel">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>波特率</string>
@@ -711,7 +704,10 @@ color:rgb(253, 127, 151);</string>
                    </size>
                   </property>
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <item>
                    <property name="text">
@@ -762,7 +758,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QLabel" name="parityBitsLabel">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>校验位</string>
@@ -772,7 +771,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QComboBox" name="parityBitsBox">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <item>
                    <property name="text">
@@ -808,7 +810,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QLabel" name="stopBitLabel">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>停止位</string>
@@ -818,7 +823,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QComboBox" name="stopBitBox">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <item>
                    <property name="text">
@@ -844,7 +852,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QLabel" name="dataBitsLabel">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>数据位</string>
@@ -854,7 +865,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QComboBox" name="dataBitsBox">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <item>
                    <property name="text">
@@ -885,7 +899,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QLabel" name="timeDispLabel">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>时间戳</string>
@@ -895,7 +912,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QComboBox" name="timeDispBox">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <item>
                    <property name="text">
@@ -916,7 +936,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QLabel" name="timerLabel">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="text">
                    <string>接收延时</string>
@@ -926,7 +949,10 @@ color:rgb(253, 127, 151);</string>
                 <item>
                  <widget class="QSpinBox" name="timerSpinBox">
                   <property name="mouseTracking">
-                   <bool>true</bool>
+                   <bool>false</bool>
+                  </property>
+                  <property name="tabletTracking">
+                   <bool>false</bool>
                   </property>
                   <property name="minimum">
                    <number>20</number>
@@ -965,7 +991,10 @@ color:rgb(253, 127, 151);</string>
           </sizepolicy>
          </property>
          <property name="mouseTracking">
-          <bool>true</bool>
+          <bool>false</bool>
+         </property>
+         <property name="tabletTracking">
+          <bool>false</bool>
          </property>
          <property name="lineWidth">
           <number>0</number>
@@ -996,7 +1025,10 @@ color:rgb(253, 127, 151);</string>
            </size>
           </property>
           <property name="mouseTracking">
-           <bool>true</bool>
+           <bool>false</bool>
+          </property>
+          <property name="tabletTracking">
+           <bool>false</bool>
           </property>
           <property name="title">
            <string/>
@@ -1023,7 +1055,10 @@ color:rgb(253, 127, 151);</string>
               </sizepolicy>
              </property>
              <property name="mouseTracking">
-              <bool>true</bool>
+              <bool>false</bool>
+             </property>
+             <property name="tabletTracking">
+              <bool>false</bool>
              </property>
              <property name="lineWidth">
               <number>0</number>
@@ -1045,7 +1080,10 @@ color:rgb(253, 127, 151);</string>
                </size>
               </property>
               <property name="mouseTracking">
-               <bool>true</bool>
+               <bool>false</bool>
+              </property>
+              <property name="tabletTracking">
+               <bool>false</bool>
               </property>
              </widget>
              <widget class="QTextEdit" name="sendTextEdit">
@@ -1056,7 +1094,10 @@ color:rgb(253, 127, 151);</string>
                </size>
               </property>
               <property name="mouseTracking">
-               <bool>true</bool>
+               <bool>false</bool>
+              </property>
+              <property name="tabletTracking">
+               <bool>false</bool>
               </property>
               <property name="layoutDirection">
                <enum>Qt::LeftToRight</enum>
@@ -1091,7 +1132,10 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string>Hex</string>
@@ -1119,7 +1163,10 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -1141,7 +1188,10 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string/>
@@ -1166,7 +1216,10 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -1188,7 +1241,10 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string/>
@@ -1210,7 +1266,10 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -1232,7 +1291,10 @@ p, li { white-space: pre-wrap; }
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="styleSheet">
                 <string notr="true">background-color: rgb(255, 255, 255);
@@ -1258,7 +1320,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -1268,7 +1333,10 @@ border:none</string>
              <item>
               <spacer name="horizontalSpacer_3">
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -1296,7 +1364,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string>发送\r\n</string>
@@ -1331,7 +1402,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string>HEX</string>
@@ -1359,7 +1433,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -1381,7 +1458,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string/>
@@ -1409,7 +1489,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string>Rx</string>
@@ -1437,7 +1520,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string>Tx</string>
@@ -1465,7 +1551,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Vertical</enum>
@@ -1475,7 +1564,10 @@ border:none</string>
              <item>
               <spacer name="horizontalSpacer_2">
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
@@ -1503,7 +1595,10 @@ border:none</string>
                 </size>
                </property>
                <property name="mouseTracking">
-                <bool>true</bool>
+                <bool>false</bool>
+               </property>
+               <property name="tabletTracking">
+                <bool>false</bool>
                </property>
                <property name="text">
                 <string/>
@@ -1535,7 +1630,9 @@ border:none</string>
    <container>1</container>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="image.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>closePushButton</sender>
@@ -1589,7 +1686,7 @@ border:none</string>
    <sender>maxPushButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>showMaximized()</slot>
+   <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>691</x>

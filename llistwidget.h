@@ -56,7 +56,7 @@ private:
     bool initOver = false;
     Ui::LListWidget *ui;
     QTimer *cyclicSendTimer;
-    int cyclicCount = 0;
+    int cyclicCount = 1;
 signals:
     void sendDataClicked(QString &str,bool &isHex);
 };

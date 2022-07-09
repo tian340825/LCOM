@@ -3,14 +3,15 @@
 #include "framelessmainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : FramelessWindow(parent)
+    : FramelessMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
     setMouseTracking(true);
     ui->setupUi(this);
     setMouseTracking(true);
-    setwidget  = new setWidget(this);
-    setwidget->hide();
+   // setwidget  = new setConfigWidget(this);
+ //   setwidget->hide();
     recvTimer = new QTimer;
     recvTimer->setInterval(ui->timerSpinBox->text().toUInt());
     recvTimer->setSingleShot(true);//只运行一次
@@ -37,10 +38,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     QList<int> sizes;
     // 在保持比例的情况下，绝对值要尽量大
-    sizes << 300 << 500;
+    sizes << 500 << 500;
     ui->splitter_4->setSizes(sizes);
-
-   // this->setTitleBar(ui->tileWidget);
+resize(QSize(1611, 1139));
+   this->setTitleBar(ui->tileWidget);
     QMenu *menu = new QMenu();
    QAction* project0Action = menu->addAction(tr("定时发送"));
    project0Action->setCheckable(true);
@@ -127,7 +128,7 @@ void MainWindow::addWidget(int index)
             {
                 QList<int> sizes;
                 // 在保持比例的情况下，绝对值要尽量大
-                sizes << 300 << 500;
+                sizes << 500 << 500;
                 ui->splitter_4->setSizes(sizes);
             }
             else
@@ -145,7 +146,7 @@ void MainWindow::addWidget(int index)
             {
                 QList<int> sizes;
                 // 在保持比例的情况下，绝对值要尽量大
-                sizes << 300 << 500;
+                sizes << 500 << 500;
                 ui->splitter_4->setSizes(sizes);
                 minFlg = !minFlg;
             }
@@ -481,6 +482,31 @@ void MainWindow::on_rxShowPushButton_clicked()
 
 void MainWindow::on_widgetSetPushButton_clicked()
 {
-    setwidget->show();
+//   setwidget->show();
+}
+
+
+void MainWindow::on_fileSendPushButton_clicked()
+{
+    QString fileName = QFileDialog::getOpenFileName(this,"选择文件","./", "Files(*.*)");
+    // ui->sendTextEdit->clear();
+    //ui->sendTextEdit->insertPlainText(fileName);
+    if(fileName.isEmpty())
+    {
+        return;
+    }
+
+    QFile aFile(fileName);
+
+    if(!aFile.exists())//如果文件不存在
+    {
+        return;
+    }
+    if(!aFile.open(QIODevice::ReadOnly |QIODevice::Text))//如果不是以只读和文本方式打开文件返回false
+    {
+        return;
+    }
+    ui->sendTextEdit->setPlainText(aFile.readAll());
+    //isSendFile = true;
 }
 
