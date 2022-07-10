@@ -379,8 +379,6 @@ void LListWidget::initSetPushButton()
         }
         clearListWidget();
         updataListWidget(ui->comComboBox->currentText());
-        clearListWidget();
-        updataListWidget(ui->comComboBox->currentText());
     });
     QMenu *menu = new QMenu();
     menu->addAction(myAc0);
