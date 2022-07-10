@@ -273,7 +273,7 @@ void MainWindow::serialPortRecv()
 
      //ui->showTextEdit->setTextColor(cfgWidget->recvShowcolorValue());
      //在接受窗口显示收到的数据
-     ui->showTextEdit->insertPlainText(receive);
+     ui->showTextEdit->append(receive);
 }
 
 void MainWindow::serialPortRecvSign()
