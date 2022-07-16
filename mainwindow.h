@@ -62,6 +62,7 @@ private:
     void sendPushButtonSign();
     void openPortPushButtonSig();
     void serialPortCheck(bool);
+    void baudRateBoxUpadta(const QString &tabName);
 private slots:
     void listSendClicked(QString &str,bool &isHex);
     void on_showTextEdit_textChanged();
@@ -69,5 +70,6 @@ private slots:
     void on_rxShowPushButton_clicked();
     void on_widgetSetPushButton_clicked();
     void on_fileSendPushButton_clicked();
+    void on_sendTextEdit_textChanged();
 };
 #endif // MAINWINDOW_H

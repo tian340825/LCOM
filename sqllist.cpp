@@ -18,11 +18,13 @@ SqlList::SqlList(QString sqlname)
     bool ok = sqlDatabase.open();
     if (ok)
     {
+        if(DEBUGLOG == 1)
         qDebug() << "database connect is ok";
     }
 
     else
     {
+        if(DEBUGLOG == 1)
         qDebug() << "database connect is fail";
     }
     QStringList *tableName = new QStringList;
@@ -45,11 +47,13 @@ void SqlList::reSqlList(QString sqlname)
     bool ok = sqlDatabase.open();
     if (ok)
     {
+        if(DEBUGLOG == 1)
         qDebug() << "database connect is ok";
     }
 
     else
     {
+        if(DEBUGLOG == 1)
         qDebug() << "database connect is fail";
     }
     QStringList *tableName = new QStringList;
@@ -74,6 +78,7 @@ void SqlList::deleteSqlTable(const QString &table)
 
 void SqlList::createSqlTable(const QString &table)
 {
+    if(DEBUGLOG == 1)
     qDebug() <<"createSqlTable" << "\n ";
     QSqlQuery query(sqlDatabase);
     QString strexec = QString("create table %1 (id int primary key,hex int,str varchar(2048),sendStr varchar(64),queue int,time int)").arg(table);
@@ -82,7 +87,7 @@ void SqlList::createSqlTable(const QString &table)
     checkSqlTable(table);
     for(int i = 1;i <= 50;i++)
     {
-        addSqlTableInfo(table,i,0,"","发送",0,1000);
+        addSqlTableInfo(table,i,0,"","发送(\\r\\n)",0,1000);
     }
 #if 0
     query.exec("select * from lcom");
@@ -107,11 +112,12 @@ bool SqlList::checkSqlTable(const QString &table)
     {
         if(query.value(0).toInt()==0)
         {
-          // 表不存在
+            if(DEBUGLOG == 1)
             qDebug() <<"表不存在" << "\n ";
            return false;
         }else
         {
+            if(DEBUGLOG == 1)
             qDebug() <<"表存在" << "\n ";
             return true;
         }
@@ -129,6 +135,7 @@ void SqlList::checkSqlTableAll(QStringList * table)
     QString strexec = QString("SELECT name FROM sqlite_master WHERE type='table' order by name");
     query.exec(strexec);
     while (query.next()) {
+        if(DEBUGLOG == 1)
         qDebug() << "table name:" << query.value(0).toString();
         //if(!(table->isEmpty()))
      //   {
@@ -215,7 +222,7 @@ void SqlList::selectTableLineInfo(const QString &table, const int &id, bool &hex
    {                  // [5] 遍历查询结果
 
      //  qDebug() <<"表存在" << "\n ";
-
+       if(DEBUGLOG == 1)
                   qDebug() << QString("id: %1, hex: %2 ,str: %3,queue: %4, time: %5")
                    .arg(query.value("id").toInt())
                     .arg(query.value("hex").toInt())
@@ -244,7 +251,7 @@ void SqlList::selectTableQueueLineInfo(const QString &table, QList<int> *id, QLi
     {                  // [5] 遍历查询结果
 
       //  qDebug() <<"表存在" << "\n ";
-
+        if(DEBUGLOG == 1)
                    qDebug() << QString("id: %1, hex: %2 ,str: %3,sendstr %6,queue: %4, time: %5")
                     .arg(query.value("id").toInt())
                      .arg(query.value("hex").toInt())

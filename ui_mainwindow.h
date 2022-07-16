@@ -101,6 +101,7 @@ public:
     QLineEdit *SendTimerLineEdit;
     QFrame *line_8;
     QSpacerItem *horizontalSpacer_3;
+    QLineEdit *inputStrLenLineEdit;
     QToolButton *sendPushButton;
     QHBoxLayout *horizontalLayout_2;
     QPushButton *hexShowPushButton;
@@ -579,6 +580,7 @@ public:
         showTextEdit->setMinimumSize(QSize(0, 0));
         showTextEdit->setMouseTracking(false);
         showTextEdit->setTabletTracking(false);
+        showTextEdit->setStyleSheet(QString::fromUtf8("font: 9pt \"Nirmala UI\";"));
         splitter->addWidget(showTextEdit);
         sendTextEdit = new QTextEdit(splitter);
         sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
@@ -586,6 +588,7 @@ public:
         sendTextEdit->setMouseTracking(false);
         sendTextEdit->setTabletTracking(false);
         sendTextEdit->setLayoutDirection(Qt::LeftToRight);
+        sendTextEdit->setReadOnly(false);
         splitter->addWidget(sendTextEdit);
 
         gridLayout->addWidget(splitter, 1, 0, 1, 1);
@@ -681,6 +684,17 @@ public:
         horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout->addItem(horizontalSpacer_3);
+
+        inputStrLenLineEdit = new QLineEdit(groupBox);
+        inputStrLenLineEdit->setObjectName(QString::fromUtf8("inputStrLenLineEdit"));
+        inputStrLenLineEdit->setMinimumSize(QSize(0, 50));
+        inputStrLenLineEdit->setMaximumSize(QSize(80, 50));
+        inputStrLenLineEdit->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"border:none"));
+        inputStrLenLineEdit->setAlignment(Qt::AlignCenter);
+        inputStrLenLineEdit->setReadOnly(true);
+
+        horizontalLayout->addWidget(inputStrLenLineEdit);
 
         sendPushButton = new QToolButton(groupBox);
         sendPushButton->setObjectName(QString::fromUtf8("sendPushButton"));
@@ -851,11 +865,16 @@ public:
         tabWidget_Main->setTabText(tabWidget_Main->indexOf(tab_2), QString());
         tabWidget_Main->setTabText(tabWidget_Main->indexOf(tab_3), QString());
         groupBox->setTitle(QString());
+        showTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Nirmala UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         sendTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">11111111111111</p></body></html>", nullptr));
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         hexSendPushButton->setText(QCoreApplication::translate("MainWindow", "Hex", nullptr));
         fileSendPushButton->setText(QString());
         clearSendPushButton->setText(QString());

@@ -120,6 +120,7 @@ void LListWidget::initLineListWidget()
         connect(sendPushButton[i],&LPushButton::leftButtonClicked,this,[=](){
             qDebug() << QString("%1").arg(lineEdit[i]->text());
             QString str = QString("%1").arg(lineEdit[i]->text());
+            str.replace("\n", "\r\n");
             bool isHex =checkBox[i]->checkState();
             if(sendPushButton[i]->text() == "发送(\\n)")
             {
@@ -165,7 +166,11 @@ void LListWidget::initLineListWidget()
             }
         });
         ui->verticalLayout->addLayout(horizontalLayout);
-       // connect(lineEdit[i],&QLineEdit::textChanged,this,&LListWidget::saveListWidget);
+        connect(lineEdit[i],&QLineEdit::textChanged,this,[=](){
+            QString senddata = lineEdit[i]->text();
+            senddata.replace("\n", "\r\n");
+        });
+        //connect(lineEdit[i],&QLineEdit::textChanged,this,&LListWidget::saveListWidget);
        // connect(msEdit[i],&QLineEdit::textChanged,this,&LListWidget::saveListWidget);
        // connect(queneEdit[i],&QLineEdit::textChanged,this,&LListWidget::saveListWidget);
 
@@ -274,8 +279,9 @@ void LListWidget::initSetPushButton()
     QAction *myAc1 = new QAction(this);
         myAc1->setText("新增");
         // myAc1->setStatusTip("This is ac1.");
-        connect(myAc1, &QAction::triggered, this,[=](){
+        connect(myAc1, &QAction::triggered, this,[=](){      
         qDebug() << QString("新增");
+        saveListWidget();
         addTabListWidget();
     });
     QAction *myAc2 = new QAction(this);
@@ -325,7 +331,7 @@ void LListWidget::initSetPushButton()
         idCyclic->clear();
         strCyclic->clear();
         sendStrCyclic->clear();
-
+        if(DEBUGLOG == 1)
         qDebug() << QString("循环发送");
         if(myAc4->isChecked())
         {
@@ -352,12 +358,14 @@ void LListWidget::initSetPushButton()
         {
             if(tableName->contains(text))
             {
+                if(DEBUGLOG == 1)
                 qDebug() << text << "is exist";
                 text = QInputDialog::getText(this, tr("新增Tab"),tr("请输入表名:不能重复"), QLineEdit::Normal,0, &ok);
             }
             else
             {
                 newtab = text;
+                if(DEBUGLOG == 1)
                 qDebug() << text << "set success";
                 break;
             }
@@ -421,7 +429,8 @@ void LListWidget::updataListWidget(const QString &tabName)
 
 void LListWidget::saveListWidget()
 {
-
+    if(DEBUGLOG == 1)
+    qDebug() << "save list"<<ui->comComboBox->currentText();
     bool hex;
     QString str;
     QString sendStr;
@@ -434,6 +443,7 @@ void LListWidget::saveListWidget()
         queue = queneEdit[i]->text().toInt();
         time = msEdit[i]->text().toInt();
         hex = checkBox[i]->checkState();
+
         sqlist->alterSqlTableInfo(ui->comComboBox->currentText(),i+1,hex,str,sendStr,queue,time);
     }
 }
@@ -465,8 +475,8 @@ void LListWidget::saveAsListWidget()
 
 void LListWidget::addTabListWidget()
 {
-    //  bool checkTableNameFlag = false;
-    qDebug() << "is exist";
+    if(DEBUGLOG == 1)
+    qDebug() << "addTabListWidget";
     while(1)
     {
         bool ok;
@@ -475,12 +485,14 @@ void LListWidget::addTabListWidget()
         {
             if(tableName->contains(text))
             {
+              if(DEBUGLOG == 1)
               qDebug() << text << "is exist";
               text = QInputDialog::getText(this, tr("新增Tab"),tr("请输入表名:不能重复"), QLineEdit::Normal,0, &ok);
             }
             else
             {
               tableName->append(text);
+              if(DEBUGLOG == 1)
               qDebug() << text << "set success";
               break;
             }
@@ -493,6 +505,7 @@ void LListWidget::addTabListWidget()
     sqlist->createSqlTable(tableName->last());
     updataListWidget(tableName->last());
     ui->comComboBox->addItem(tableName->last());
+    ui->comComboBox->setCurrentText(tableName->last());
 }
 
 void LListWidget::clearListWidget()

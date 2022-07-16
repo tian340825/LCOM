@@ -30,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(serial, &QSerialPort::readyRead, this, &MainWindow::serialPortRecvSign);//接受串口数据
     //设置tabwidget位置
     connect(ui->comboBox,&LComboBox::clicked,this,&MainWindow::serialPortCheck);//串口显示框下拉刷新
+    connect(ui->baudRateBox,&LComboBox::currentTextChanged,this,&MainWindow::baudRateBoxUpadta);//串口显示框下拉刷新
     ui->tabWidget_Main->setAttribute(Qt::WA_StyledBackground);
     ui->tabWidget_Main->setTabEnabled(0, false);
     connect(ui->tabWidget_Main, &QTabWidget::tabBarClicked, this ,&MainWindow::addWidget);
@@ -40,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 在保持比例的情况下，绝对值要尽量大
     sizes << 500 << 500;
     ui->splitter_4->setSizes(sizes);
-resize(QSize(1611, 1139));
+    resize(QSize(1611, 1139));
    this->setTitleBar(ui->tileWidget);
     QMenu *menu = new QMenu();
    QAction* project0Action = menu->addAction(tr("定时发送"));
@@ -106,6 +107,10 @@ resize(QSize(1611, 1139));
 
 MainWindow::~MainWindow()
 {
+    if (isSerialOpen)
+    {
+        serial->close();
+    }
     delete ui;
 }
 
@@ -181,7 +186,6 @@ void MainWindow::serialPortSend(const QString &str,bool &hexSend)
     QTextCursor cursor = ui->showTextEdit->textCursor();
     cursor.movePosition(QTextCursor::End);
     ui->showTextEdit->setTextCursor(cursor);
-
     QByteArray senddata = str.toUtf8();
     QByteArray showdata = str.toUtf8();
 
@@ -246,9 +250,8 @@ void MainWindow::serialPortSend(const QString &str,bool &hexSend)
         }
         //ui->showTextEdit->setTextColor(cfgWidget->sendShowcolorValue());
         //在接受窗口显示收到的数据
-
-        ui->showTextEdit->append(receive);
-
+       ui->showTextEdit->append(receive);
+       //ui->showTextEdit->insertPlainText(receive);
     }
 
 }
@@ -269,11 +272,13 @@ void MainWindow::serialPortRecv()
         /*hex显示*/
         receive = senddata.toHex(' ').trimmed().toUpper();
         ui->showTextEdit->setTextColor(QColor(Qt::green));
+        QString str = "\r\n";
+        ui->showTextEdit->insertPlainText(str);
      }
-
      //ui->showTextEdit->setTextColor(cfgWidget->recvShowcolorValue());
      //在接受窗口显示收到的数据
-     ui->showTextEdit->append(receive);
+     ui->showTextEdit->insertPlainText(receive);
+
 }
 
 void MainWindow::serialPortRecvSign()
@@ -377,6 +382,7 @@ void MainWindow::sendPushButtonSign()
 {
     bool hexStatus =ui->hexSendPushButton->isChecked();
     QString senddata = ui->sendTextEdit->toPlainText().toUtf8();
+    senddata.replace("\n", "\r\n");
     //判断是否增加回车换行
     switch(sendType)
     {
@@ -409,6 +415,17 @@ void MainWindow::serialPortCheck(bool)
          QString portName=QString("%1(%2)").arg(info.description()).arg(info.portName());
          ui->comboBox->addItem(portName);
     }
+}
+
+void MainWindow::baudRateBoxUpadta(const QString &tabName)
+{
+    serial->setBaudRate( static_cast<QSerialPort::BaudRate> (tabName.toInt()) );
+    if (isSerialOpen)
+    {
+        serial->open(QIODevice::ReadWrite);
+        serial->close();
+    }
+
 }
 
 void MainWindow::openPortPushButtonSig()
@@ -511,5 +528,13 @@ void MainWindow::on_fileSendPushButton_clicked()
     }
     ui->sendTextEdit->setPlainText(aFile.readAll());
     //isSendFile = true;
+}
+
+
+void MainWindow::on_sendTextEdit_textChanged()
+{
+    QString senddata = ui->sendTextEdit->toPlainText();
+    senddata.replace("\n", "\r\n");
+    ui->inputStrLenLineEdit->setText(QString("%1").arg(senddata.length()));
 }
 

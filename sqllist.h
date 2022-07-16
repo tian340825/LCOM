@@ -22,6 +22,7 @@ public:
     void checkSqlTableAll(QStringList * table);//all
     void alterSqlTable(const QString &oldTable,const QString &newTable);//重命名表
 public:
+    #define DEBUGLOG 0
     void addSqlTableInfo(const QString &table,const int &id,const bool &hex,const QString &str,const QString &sendStr,const int &queue,const int &time);//添加表信息
     void alterSqlTableInfo(const QString &table,const int &id,const bool &hex,const QString &str,const QString &sendStr,const int &queue,const int &time);//更新表指定id信息
     void alterSqlTableInfoStr(const QString &table,const int &id,const QString &str);//更新Table ser信息
