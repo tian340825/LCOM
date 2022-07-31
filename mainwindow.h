@@ -20,6 +20,8 @@
 #include <QTimer>
 /*---QDebug--*/
 //#include "setconfigwidget.h"
+#include <QFileIconProvider>
+#include <QTextDocumentFragment>
 namespace Ui {
 class MainWindow;
 }
@@ -51,6 +53,7 @@ private:
     QTimer *recvTimer;
     QTimer *sendTimer;
     QTimer *serialCheckTimer;
+    QString currentFileName;
     int reCheckFlag = 0;
     bool isSerialOpen = false;
     bool isSendFile = false;
@@ -63,6 +66,7 @@ private:
     void openPortPushButtonSig();
     void serialPortCheck(bool);
     void baudRateBoxUpadta(const QString &tabName);
+    void sleep(unsigned int msec);
 private slots:
     void listSendClicked(QString &str,bool &isHex);
     void on_showTextEdit_textChanged();
@@ -71,5 +75,6 @@ private slots:
     void on_widgetSetPushButton_clicked();
     void on_fileSendPushButton_clicked();
     void on_sendTextEdit_textChanged();
+    void on_clearSendPushButton_clicked();
 };
 #endif // MAINWINDOW_H

@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sendPushButton,&QToolButton::clicked,this,&MainWindow::sendPushButtonSign);//发送数据
     connect(serial, &QSerialPort::readyRead, this, &MainWindow::serialPortRecvSign);//接受串口数据
     //设置tabwidget位置
-    connect(ui->comboBox,&LComboBox::clicked,this,&MainWindow::serialPortCheck);//串口显示框下拉刷新
+    connect(ui->comboBox,&LComboBox::clicked,this,&MainWindow::serialPortCheck);
     connect(ui->baudRateBox,&LComboBox::currentTextChanged,this,&MainWindow::baudRateBoxUpadta);//串口显示框下拉刷新
     ui->tabWidget_Main->setAttribute(Qt::WA_StyledBackground);
     ui->tabWidget_Main->setTabEnabled(0, false);
@@ -41,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent)
     // 在保持比例的情况下，绝对值要尽量大
     sizes << 500 << 500;
     ui->splitter_4->setSizes(sizes);
-    resize(QSize(1611, 1139));
+    resize(QSize(1200, 900));
    this->setTitleBar(ui->tileWidget);
     QMenu *menu = new QMenu();
    QAction* project0Action = menu->addAction(tr("定时发送"));
@@ -381,6 +381,50 @@ void MainWindow::serialCheckTimerSig()
 void MainWindow::sendPushButtonSign()
 {
     bool hexStatus =ui->hexSendPushButton->isChecked();
+    if(false == ui->sendTextEdit->isEnabled())
+    {
+        QFile aFile(currentFileName);
+        if(!aFile.exists())//如果文件不存在
+        {
+            return;
+        }
+        if(!aFile.open(QIODevice::ReadOnly |QIODevice::Text))//如果不是以只读和文本方式打开文件返回false
+        {
+            return;
+        }
+        QByteArray filedata;
+
+        int size =ui->fileSizeSpinBox->text().toUInt();
+        for(int i = 0;i <= aFile.size() / size ;i++)
+        {
+                filedata = aFile.read(size);
+                serial->write(filedata);
+                QString timer;
+                if(ui->timeShowPushButton->isChecked() == true)
+                {
+
+                    timer = QString("[%1]:Tx -> ").arg(QTime::currentTime().toString("HH:mm:ss:zzz"));
+                }
+
+                if(ui->hexShowPushButton->isChecked())
+                {
+                    /*hex显示*/
+                    filedata = filedata.toHex(' ').trimmed().toUpper();
+                    ui->showTextEdit->setTextColor(QColor(Qt::green));
+                }
+               ui->showTextEdit->append(timer+filedata);
+                sleep(ui->fileTimerSpinBox->text().toUInt());
+                //serial->write(senddata);
+                //ui->showTextEdit->append(senddata);
+
+        }
+        on_clearSendPushButton_clicked();
+        return;
+    }
+    qDebug()<<"111"<<ui->sendTextEdit->toHtml();
+    QString oldHtml =ui->sendTextEdit->toHtml();
+    QString newHtml;
+
     QString senddata = ui->sendTextEdit->toPlainText().toUtf8();
     senddata.replace("\n", "\r\n");
     //判断是否增加回车换行
@@ -415,6 +459,12 @@ void MainWindow::serialPortCheck(bool)
          QString portName=QString("%1(%2)").arg(info.description()).arg(info.portName());
          ui->comboBox->addItem(portName);
     }
+    if (isSerialOpen)
+    {
+        serial->open(QIODevice::ReadWrite);
+        serial->close();
+    }
+
 }
 
 void MainWindow::baudRateBoxUpadta(const QString &tabName)
@@ -517,6 +567,7 @@ void MainWindow::on_fileSendPushButton_clicked()
     }
 
     QFile aFile(fileName);
+    currentFileName = fileName;
 
     if(!aFile.exists())//如果文件不存在
     {
@@ -526,8 +577,92 @@ void MainWindow::on_fileSendPushButton_clicked()
     {
         return;
     }
-    ui->sendTextEdit->setPlainText(aFile.readAll());
-    //isSendFile = true;
+
+     QFileInfo file_info(fileName);
+     QFileIconProvider icon_provider;
+     QIcon icon = icon_provider.icon(file_info);
+     QTextDocumentFragment fragment;
+     QFile writeFile("F:/git/LCOM/image/svg/file.svg");
+     qDebug()<< QString(writeFile.fileName());
+     qDebug()<< QString(fileName);
+#if 1
+   // qDebug()<< QString("@@@ gb2312 str is:%1\n").arg(strGb2312.toLocal8Bit().data());
+    // QTextCodec* utf8Codec= QTextCodec::codecForName("utf-8");
+    // QTextCodec* gb2312Codec = QTextCodec::codecForName("gb2312");
+
+    // QString strUnicode= gb2312Codec->toUnicode(strGb2312.toLocal8Bit().data());
+    // QByteArray ByteUtf8= utf8Codec->fromUnicode(strUnicode);
+
+    // char *utf8code = ByteUtf8.data();
+    // printf("@@@ Utf8  strGb2312toUtf8:%s\n",utf8code);
+     QString svgFileSize = QString("  <text transform=\"matrix(0.902189 0 0 1 6.59265 0)\" stroke=\"#000\" font-weight=\"normal\" xml:space=\"preserve\" text-anchor=\"start\" font-family=\"\'Yrsa\'\" font-size=\"24\" stroke-width=\"0\" id=\"svg_4\" y=\"50.27103\" x=\"65.18486\" fill=\"#A8FFE9\">%1</text>").arg(aFile.size());
+     QString svgFileType = QString("  <text font-weight=\"bold\" xml:space=\"preserve\" text-anchor=\"start\" font-family=\"\'Yrsa\'\" font-size=\"30\" id=\"svg_7\" y=\"37.85699\" x=\"12.85699\" stroke-width=\"0\" stroke=\"#BBBBBB\" fill=\"#ffffff\">%1</text>").arg(file_info.suffix());
+     QString svgFileName = QString("  <text style=\"cursor: move;\" xml:space=\"preserve\" text-anchor=\"start\" font-family=\"\'Yrsa\'\" font-size=\"15\" id=\"svg_13\" y=\"23.85699\" x=\"65.85699\" stroke-width=\"0\" stroke=\"#ffffff\" fill=\"#000000\">%1</text>>").arg(QString(file_info.fileName().toUtf8()));
+     QString strAll;
+     QStringList strList;
+     QFile readFile("F:/git/LCOM/image/svg/file.svg");
+     if(readFile.open((QIODevice::ReadOnly|QIODevice::Text)))
+     {
+         QTextStream stream(&readFile);
+         strAll=stream.readAll();
+     }
+     if(writeFile.open(QIODevice::WriteOnly |QIODevice::Text))
+     {
+             QTextStream stream(&writeFile);
+             strList=strAll.split("\n");           //以换行符为基准分割文本
+             for(int i=0;i<strList.count();i++)    //遍历每一行
+             {
+
+                 qDebug()<< QString("i");
+                 if(strList.at(i).contains("  <text transform"))    //"123456789"是要修改的内容
+                 {
+                     qDebug()<< QString("1");
+                     strList.at(i);
+
+                     stream<<svgFileSize<<'\n';
+                     continue;
+                 }
+                 if(strList.at(i).contains("  <text font-weight"))    //"123456789"是要修改的内容
+                 {                     qDebug()<< QString("2");
+                     strList.at(i);
+
+                     stream<<svgFileType<<'\n';
+                     continue;
+                 }
+                 if(strList.at(i).contains("  <text style=\"cursor: move;\""))    //"123456789"是要修改的内容
+                 {                     qDebug()<< svgFileName;
+                    strList.at(i);
+                     stream<<svgFileName<<'\n';
+                     continue;
+                 }
+                 //如果没有找到要替换的内容，照常写入
+                 else
+                 {
+                     qDebug()<< QString("123");
+
+                     if(i==strList.count()-1)
+                     {
+                        stream<<strList.at(i);
+                     }
+                     else
+                     {
+                        stream<<strList.at(i)<<'\n';
+                     }
+                 }
+             }
+     }
+     else
+     {
+         qDebug()<< QString("open file");
+     }
+     writeFile.close();
+    this->update();
+     ui->sendTextEdit->clear();
+#endif
+     QString path = QString("<img src=\"%1\" width=\"300\" height=\"60\">").arg("F:/git/LCOM/image/svg/file.svg");
+     ui->sendTextEdit->setText(path);
+     ui->sendTextEdit->setEnabled(false);//不可输入
+    aFile.close();
 }
 
 
@@ -538,3 +673,24 @@ void MainWindow::on_sendTextEdit_textChanged()
     ui->inputStrLenLineEdit->setText(QString("%1").arg(senddata.length()));
 }
 
+
+void MainWindow::on_clearSendPushButton_clicked()
+{
+    ui->sendTextEdit->clear();
+    if(false == ui->sendTextEdit->isEnabled())
+    {
+        ui->sendTextEdit->setEnabled(true);
+    }
+}
+
+void MainWindow::sleep(unsigned int msec)
+{
+    QTime dieTime = QTime::currentTime().addMSecs(msec);
+    while( QTime::currentTime() < dieTime )
+        {
+        QCoreApplication::processEvents(QEventLoop::AllEvents, 100);
+        //这条语句能够使程序在while等待期间，去处理一下本线程的事件循环，处理事件循环最多100ms必须返回本语句，
+        //如果提前处理完毕，则立即返回这条语句。这也就导致了该Delay_MSec函数的定时误差可能高达100ms。
+    }
+
+}

@@ -27,7 +27,6 @@
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolButton>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 #include <lcombobox.h>
 #include <llistwidget.h>
@@ -57,7 +56,7 @@ public:
     QTabWidget *tabWidget_Main;
     QWidget *tab;
     QWidget *tab_2;
-    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout_5;
     QLabel *label_7;
     QFrame *line_5;
     QSpacerItem *verticalSpacer;
@@ -82,15 +81,18 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QLabel *timerLabel;
     QSpinBox *timerSpinBox;
+    QHBoxLayout *horizontalLayout_10;
+    QLabel *timerLabel_2;
+    QSpinBox *fileTimerSpinBox;
+    QHBoxLayout *horizontalLayout_11;
+    QLabel *timerLabel_3;
+    QSpinBox *fileSizeSpinBox;
     QWidget *tab_3;
     QGridLayout *gridLayout_7;
     LListWidget *widget_2;
     QSplitter *splitter_3;
     QGroupBox *groupBox;
     QGridLayout *gridLayout;
-    QSplitter *splitter;
-    QTextEdit *showTextEdit;
-    QTextEdit *sendTextEdit;
     QHBoxLayout *horizontalLayout;
     QPushButton *hexSendPushButton;
     QFrame *line_10;
@@ -112,6 +114,9 @@ public:
     QFrame *line_6;
     QSpacerItem *horizontalSpacer_2;
     QPushButton *clearShowPushButton;
+    QSplitter *splitter;
+    QTextEdit *showTextEdit;
+    QTextEdit *sendTextEdit;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -332,11 +337,8 @@ public:
         tabWidget_Main->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
-        verticalLayout = new QVBoxLayout(tab_2);
-        verticalLayout->setSpacing(0);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        verticalLayout->setSizeConstraint(QLayout::SetDefaultConstraint);
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
+        gridLayout_5 = new QGridLayout(tab_2);
+        gridLayout_5->setObjectName(QString::fromUtf8("gridLayout_5"));
         label_7 = new QLabel(tab_2);
         label_7->setObjectName(QString::fromUtf8("label_7"));
         label_7->setMaximumSize(QSize(16777215, 30));
@@ -345,7 +347,7 @@ public:
         label_7->setStyleSheet(QString::fromUtf8("font: 9pt \"Microsoft YaHei UI\";\n"
 "color:rgb(253, 127, 151);"));
 
-        verticalLayout->addWidget(label_7);
+        gridLayout_5->addWidget(label_7, 0, 0, 1, 1);
 
         line_5 = new QFrame(tab_2);
         line_5->setObjectName(QString::fromUtf8("line_5"));
@@ -355,11 +357,11 @@ public:
         line_5->setFrameShape(QFrame::HLine);
         line_5->setFrameShadow(QFrame::Sunken);
 
-        verticalLayout->addWidget(line_5);
+        gridLayout_5->addWidget(line_5, 1, 0, 1, 1);
 
         verticalSpacer = new QSpacerItem(0, 1, QSizePolicy::Minimum, QSizePolicy::Minimum);
 
-        verticalLayout->addItem(verticalSpacer);
+        gridLayout_5->addItem(verticalSpacer, 2, 0, 1, 1);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
@@ -378,7 +380,7 @@ public:
         horizontalLayout_3->addWidget(comboBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_3);
+        gridLayout_5->addLayout(horizontalLayout_3, 3, 0, 1, 1);
 
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
@@ -409,7 +411,7 @@ public:
         horizontalLayout_4->addWidget(baudRateBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_4);
+        gridLayout_5->addLayout(horizontalLayout_4, 4, 0, 1, 1);
 
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
@@ -433,7 +435,7 @@ public:
         horizontalLayout_5->addWidget(parityBitsBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_5);
+        gridLayout_5->addLayout(horizontalLayout_5, 5, 0, 1, 1);
 
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
@@ -455,7 +457,7 @@ public:
         horizontalLayout_6->addWidget(stopBitBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_6);
+        gridLayout_5->addLayout(horizontalLayout_6, 6, 0, 1, 1);
 
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
@@ -478,7 +480,7 @@ public:
         horizontalLayout_7->addWidget(dataBitsBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_7);
+        gridLayout_5->addLayout(horizontalLayout_7, 7, 0, 1, 1);
 
         horizontalLayout_8 = new QHBoxLayout();
         horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
@@ -499,7 +501,7 @@ public:
         horizontalLayout_8->addWidget(timeDispBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_8);
+        gridLayout_5->addLayout(horizontalLayout_8, 8, 0, 1, 1);
 
         horizontalLayout_9 = new QHBoxLayout();
         horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
@@ -521,7 +523,52 @@ public:
         horizontalLayout_9->addWidget(timerSpinBox);
 
 
-        verticalLayout->addLayout(horizontalLayout_9);
+        gridLayout_5->addLayout(horizontalLayout_9, 9, 0, 1, 1);
+
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        timerLabel_2 = new QLabel(tab_2);
+        timerLabel_2->setObjectName(QString::fromUtf8("timerLabel_2"));
+        timerLabel_2->setMouseTracking(false);
+        timerLabel_2->setTabletTracking(false);
+
+        horizontalLayout_10->addWidget(timerLabel_2);
+
+        fileTimerSpinBox = new QSpinBox(tab_2);
+        fileTimerSpinBox->setObjectName(QString::fromUtf8("fileTimerSpinBox"));
+        fileTimerSpinBox->setMouseTracking(false);
+        fileTimerSpinBox->setTabletTracking(false);
+        fileTimerSpinBox->setMinimum(0);
+        fileTimerSpinBox->setMaximum(20000000);
+        fileTimerSpinBox->setSingleStep(100);
+
+        horizontalLayout_10->addWidget(fileTimerSpinBox);
+
+
+        gridLayout_5->addLayout(horizontalLayout_10, 10, 0, 1, 1);
+
+        horizontalLayout_11 = new QHBoxLayout();
+        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
+        timerLabel_3 = new QLabel(tab_2);
+        timerLabel_3->setObjectName(QString::fromUtf8("timerLabel_3"));
+        timerLabel_3->setMouseTracking(false);
+        timerLabel_3->setTabletTracking(false);
+
+        horizontalLayout_11->addWidget(timerLabel_3);
+
+        fileSizeSpinBox = new QSpinBox(tab_2);
+        fileSizeSpinBox->setObjectName(QString::fromUtf8("fileSizeSpinBox"));
+        fileSizeSpinBox->setMouseTracking(false);
+        fileSizeSpinBox->setTabletTracking(false);
+        fileSizeSpinBox->setMinimum(0);
+        fileSizeSpinBox->setMaximum(100000000);
+        fileSizeSpinBox->setSingleStep(10);
+        fileSizeSpinBox->setValue(512);
+
+        horizontalLayout_11->addWidget(fileSizeSpinBox);
+
+
+        gridLayout_5->addLayout(horizontalLayout_11, 11, 0, 1, 1);
 
         tabWidget_Main->addTab(tab_2, QString());
         tab_3 = new QWidget();
@@ -535,7 +582,7 @@ public:
 
         tabWidget_Main->addTab(tab_3, QString());
 
-        gridLayout_3->addWidget(tabWidget_Main, 0, 1, 1, 1);
+        gridLayout_3->addWidget(tabWidget_Main, 0, 0, 1, 1);
 
         splitter_4->addWidget(groupBox_3);
         splitter_3 = new QSplitter(splitter_4);
@@ -562,37 +609,6 @@ public:
         gridLayout->setSpacing(0);
         gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
         gridLayout->setContentsMargins(-1, 0, 0, 0);
-        splitter = new QSplitter(groupBox);
-        splitter->setObjectName(QString::fromUtf8("splitter"));
-        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy3.setHorizontalStretch(3);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(splitter->sizePolicy().hasHeightForWidth());
-        splitter->setSizePolicy(sizePolicy3);
-        splitter->setMouseTracking(false);
-        splitter->setTabletTracking(false);
-        splitter->setLineWidth(0);
-        splitter->setOrientation(Qt::Vertical);
-        splitter->setHandleWidth(0);
-        splitter->setChildrenCollapsible(false);
-        showTextEdit = new QTextEdit(splitter);
-        showTextEdit->setObjectName(QString::fromUtf8("showTextEdit"));
-        showTextEdit->setMinimumSize(QSize(0, 0));
-        showTextEdit->setMouseTracking(false);
-        showTextEdit->setTabletTracking(false);
-        showTextEdit->setStyleSheet(QString::fromUtf8("font: 9pt \"Nirmala UI\";"));
-        splitter->addWidget(showTextEdit);
-        sendTextEdit = new QTextEdit(splitter);
-        sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
-        sendTextEdit->setMinimumSize(QSize(0, 0));
-        sendTextEdit->setMouseTracking(false);
-        sendTextEdit->setTabletTracking(false);
-        sendTextEdit->setLayoutDirection(Qt::LeftToRight);
-        sendTextEdit->setReadOnly(false);
-        splitter->addWidget(sendTextEdit);
-
-        gridLayout->addWidget(splitter, 1, 0, 1, 1);
-
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
@@ -609,8 +625,8 @@ public:
 
         line_10 = new QFrame(groupBox);
         line_10->setObjectName(QString::fromUtf8("line_10"));
-        line_10->setMinimumSize(QSize(20, 20));
-        line_10->setMaximumSize(QSize(20, 20));
+        line_10->setMinimumSize(QSize(20, 50));
+        line_10->setMaximumSize(QSize(20, 50));
         line_10->setMouseTracking(false);
         line_10->setTabletTracking(false);
         line_10->setFrameShape(QFrame::VLine);
@@ -630,8 +646,8 @@ public:
 
         line = new QFrame(groupBox);
         line->setObjectName(QString::fromUtf8("line"));
-        line->setMinimumSize(QSize(20, 20));
-        line->setMaximumSize(QSize(20, 20));
+        line->setMinimumSize(QSize(20, 50));
+        line->setMaximumSize(QSize(20, 50));
         line->setMouseTracking(false);
         line->setTabletTracking(false);
         line->setFrameShape(QFrame::VLine);
@@ -650,8 +666,8 @@ public:
 
         line_9 = new QFrame(groupBox);
         line_9->setObjectName(QString::fromUtf8("line_9"));
-        line_9->setMinimumSize(QSize(20, 20));
-        line_9->setMaximumSize(QSize(20, 20));
+        line_9->setMinimumSize(QSize(20, 50));
+        line_9->setMaximumSize(QSize(20, 50));
         line_9->setMouseTracking(false);
         line_9->setTabletTracking(false);
         line_9->setFrameShape(QFrame::VLine);
@@ -672,8 +688,8 @@ public:
 
         line_8 = new QFrame(groupBox);
         line_8->setObjectName(QString::fromUtf8("line_8"));
-        line_8->setMinimumSize(QSize(20, 20));
-        line_8->setMaximumSize(QSize(20, 20));
+        line_8->setMinimumSize(QSize(20, 50));
+        line_8->setMaximumSize(QSize(20, 50));
         line_8->setMouseTracking(false);
         line_8->setTabletTracking(false);
         line_8->setFrameShape(QFrame::VLine);
@@ -795,6 +811,37 @@ public:
 
         gridLayout->addLayout(horizontalLayout_2, 0, 0, 1, 1);
 
+        splitter = new QSplitter(groupBox);
+        splitter->setObjectName(QString::fromUtf8("splitter"));
+        QSizePolicy sizePolicy3(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(3);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(splitter->sizePolicy().hasHeightForWidth());
+        splitter->setSizePolicy(sizePolicy3);
+        splitter->setMouseTracking(false);
+        splitter->setTabletTracking(false);
+        splitter->setLineWidth(0);
+        splitter->setOrientation(Qt::Vertical);
+        splitter->setHandleWidth(0);
+        splitter->setChildrenCollapsible(false);
+        showTextEdit = new QTextEdit(splitter);
+        showTextEdit->setObjectName(QString::fromUtf8("showTextEdit"));
+        showTextEdit->setMinimumSize(QSize(0, 0));
+        showTextEdit->setMouseTracking(false);
+        showTextEdit->setTabletTracking(false);
+        showTextEdit->setStyleSheet(QString::fromUtf8("font: 9pt \"Nirmala UI\";"));
+        splitter->addWidget(showTextEdit);
+        sendTextEdit = new QTextEdit(splitter);
+        sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
+        sendTextEdit->setMinimumSize(QSize(0, 0));
+        sendTextEdit->setMouseTracking(false);
+        sendTextEdit->setTabletTracking(false);
+        sendTextEdit->setLayoutDirection(Qt::LeftToRight);
+        sendTextEdit->setReadOnly(false);
+        splitter->addWidget(sendTextEdit);
+
+        gridLayout->addWidget(splitter, 1, 0, 1, 1);
+
         splitter_3->addWidget(groupBox);
         splitter_4->addWidget(splitter_3);
 
@@ -807,10 +854,9 @@ public:
 
         retranslateUi(MainWindow);
         QObject::connect(closePushButton, SIGNAL(clicked()), MainWindow, SLOT(close()));
-        QObject::connect(clearSendPushButton, SIGNAL(clicked()), sendTextEdit, SLOT(clear()));
-        QObject::connect(clearShowPushButton, SIGNAL(clicked()), showTextEdit, SLOT(clear()));
-        QObject::connect(maxPushButton, SIGNAL(clicked()), MainWindow, SLOT(showMinimized()));
+        QObject::connect(maxPushButton, SIGNAL(clicked()), MainWindow, SLOT(showMaximized()));
         QObject::connect(minPushButton, SIGNAL(clicked()), MainWindow, SLOT(showMinimized()));
+        QObject::connect(clearShowPushButton, SIGNAL(clicked()), showTextEdit, SLOT(clear()));
 
         tabWidget_Main->setCurrentIndex(1);
 
@@ -862,19 +908,17 @@ public:
         timeDispBox->setItemText(1, QCoreApplication::translate("MainWindow", "\345\205\263\351\227\255", nullptr));
 
         timerLabel->setText(QCoreApplication::translate("MainWindow", "\346\216\245\346\224\266\345\273\266\346\227\266", nullptr));
+        timerLabel_2->setText(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266\345\273\266\346\227\266", nullptr));
+#if QT_CONFIG(whatsthis)
+        fileTimerSpinBox->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\345\217\221\351\200\201\346\226\207\344\273\266\346\227\266\357\274\214\346\257\217\345\214\205\346\225\260\346\215\256\344\271\213\351\227\264\345\273\266\346\227\266ms</p></body></html>", nullptr));
+#endif // QT_CONFIG(whatsthis)
+        timerLabel_3->setText(QCoreApplication::translate("MainWindow", "\346\226\207\344\273\266\345\210\206\345\214\205", nullptr));
+#if QT_CONFIG(whatsthis)
+        fileSizeSpinBox->setWhatsThis(QCoreApplication::translate("MainWindow", "<html><head/><body><p>\346\257\217\345\214\205\346\226\207\344\273\266\345\244\247\345\260\217</p></body></html>", nullptr));
+#endif // QT_CONFIG(whatsthis)
         tabWidget_Main->setTabText(tabWidget_Main->indexOf(tab_2), QString());
         tabWidget_Main->setTabText(tabWidget_Main->indexOf(tab_3), QString());
         groupBox->setTitle(QString());
-        showTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Nirmala UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
-        sendTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
         hexSendPushButton->setText(QCoreApplication::translate("MainWindow", "Hex", nullptr));
         fileSendPushButton->setText(QString());
         clearSendPushButton->setText(QString());
@@ -885,6 +929,16 @@ public:
         rxShowPushButton->setText(QCoreApplication::translate("MainWindow", "Rx", nullptr));
         txShowPushButton->setText(QCoreApplication::translate("MainWindow", "Tx", nullptr));
         clearShowPushButton->setText(QString());
+        showTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Nirmala UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\" margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
+        sendTextEdit->setHtml(QCoreApplication::translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
+"<html><head><meta name=\"qrichtext\" content=\"1\" /><meta charset=\"utf-8\" /><title>aaa: 12</title><style type=\"text/css\">\n"
+"p, li { white-space: pre-wrap; }\n"
+"</style></head><body style=\" font-family:'Microsoft YaHei UI'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
+"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>", nullptr));
     } // retranslateUi
 
 };
