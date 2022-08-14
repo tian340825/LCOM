@@ -473,10 +473,11 @@ void LListWidget::saveListWidget()
     for(int i = 0;i < 50;i++)
     {
         sendStr = sendPushButton[i]->text();
-        str = lineEdit[i]->text();
+        str = lineEdit[i]->text().toUtf8();
         queue = queneEdit[i]->text().toInt();
         time = msEdit[i]->text().toInt();
         hex = checkBox[i]->checkState();
+        qDebug() <<QString("%1").arg(str);
 
         sqlist->alterSqlTableInfo(ui->comComboBox->currentText(),i+1,hex,str,sendStr,queue,time);
     }

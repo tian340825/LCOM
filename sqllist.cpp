@@ -189,17 +189,21 @@ void SqlList::addSqlTableInfo(const QString &table, const int &id, const bool &h
 
 void SqlList::alterSqlTableInfo(const QString &table, const int &id, const bool &hex, const QString &str, const QString &sendStr, const int &queue, const int &time)
 {
+    QString senddata = str;
+    senddata.replace("'", "''");
     QSqlQuery query(sqlDatabase);
-    QString strexec = QString("UPDATE %1 set hex=%3, str=\"%4\", sendStr = \"%5\",queue =%6, time = %7 where id = %2")
-            .arg(table).arg(id).arg(hex).arg(str).arg(sendStr).arg(queue).arg(time);
+    QString strexec = QString("UPDATE %1 set hex=%3, str=\'%4\', sendStr = \"%5\",queue =%6, time = %7 where id = %2")
+            .arg(table).arg(id).arg(hex).arg(senddata).arg(sendStr).arg(queue).arg(time);
     query.exec(strexec);
 }
 
 void SqlList::alterSqlTableInfoStr(const QString &table,const int &id, const QString &str)
 {
+    QString senddata = str;
+    senddata.replace("'", "''");
     QSqlQuery query(sqlDatabase);
-    QString strexec = QString("UPDATE %1 set str=%3 where id=%2;")
-            .arg(table).arg(id).arg(str);
+    QString strexec = QString("UPDATE %1 set str='%3' where id=%2;")
+            .arg(table).arg(id).arg(senddata);
     query.exec(strexec);
 }
 
