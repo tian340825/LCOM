@@ -81,13 +81,13 @@ void SqlList::createSqlTable(const QString &table)
     if(DEBUGLOG == 1)
     qDebug() <<"createSqlTable" << "\n ";
     QSqlQuery query(sqlDatabase);
-    QString strexec = QString("create table %1 (id int primary key,hex int,str varchar(2048),sendStr varchar(64),queue int,time int)").arg(table);
+    QString strexec = QString("create table %1 (id int primary key,hex int,str varchar(2048),sendStr varchar(64),queue int,time int,toolTipStr varchar(1024))").arg(table);
     //query.exec("create table lcom (id int primary key,hex varchar(2048),str int,queue int,time int)");
     query.exec(strexec);
     checkSqlTable(table);
     for(int i = 1;i <= 50;i++)
     {
-        addSqlTableInfo(table,i,0,"","发送(\\r\\n)",0,1000);
+        addSqlTableInfo(table,i,0,"","发送(\\r\\n)",0,1000,"按下回车自定义提示消息");
     }
 #if 0
     query.exec("select * from lcom");
@@ -119,6 +119,7 @@ bool SqlList::checkSqlTable(const QString &table)
         {
             if(DEBUGLOG == 1)
             qDebug() <<"表存在" << "\n ";
+            checkSqlTableRow(table,"toolTipStr");
             return true;
         }
 
@@ -142,6 +143,12 @@ void SqlList::checkSqlTableAll(QStringList * table)
             table->append(query.value(0).toString());
        // }
     }
+
+    for(int i = 0;i < table->count();i++)
+    {
+        checkSqlTableRow(table->at(i),"toolTipStr");
+
+    }
      //qDebug() <<table.size()<<table.at(0);
     // table->.contains(“123”);查询是否包含
 }
@@ -155,11 +162,11 @@ void SqlList::alterSqlTable(const QString &oldTable, const QString &newTable)
     query.exec(strexec);
 }
 
-void SqlList::addSqlTableInfo(const QString &table, const int &id, const bool &hex, const QString &str,const QString &sendStr, const int &queue, const int &time)
+void SqlList::addSqlTableInfo(const QString &table, const int &id, const bool &hex, const QString &str,const QString &sendStr, const int &queue, const int &time,const QString &toolTipStr)
 {
     QSqlQuery query(sqlDatabase);
     //占位符 : + 自定义名字
-    QString strexec = QString("INSERT INTO %1 (id, hex, str, sendStr,queue, time) VALUES(:id ,:hex,:str,:sendStr,:queue,:time)").arg(table);
+    QString strexec = QString("INSERT INTO %1 (id, hex, str, sendStr,queue, time, toolTipStr) VALUES(:id ,:hex,:str,:sendStr,:queue,:time,:toolTipStr)").arg(table);
     //query.exec("create table lcom (id int primary key,hex varchar(2048),str int,queue int,time int)");
     query.prepare(strexec);
     //给字段绑定
@@ -172,6 +179,14 @@ void SqlList::addSqlTableInfo(const QString &table, const int &id, const bool &h
     else
     {
         query.bindValue(":str", sendStr);
+    }
+    if(toolTipStr.isEmpty())
+    {
+        query.bindValue(":toolTipStr",QString(""));
+    }
+    else
+    {
+        query.bindValue(":toolTipStr", toolTipStr);
     }
     if(sendStr.isEmpty())
     {
@@ -187,23 +202,41 @@ void SqlList::addSqlTableInfo(const QString &table, const int &id, const bool &h
 
 }
 
-void SqlList::alterSqlTableInfo(const QString &table, const int &id, const bool &hex, const QString &str, const QString &sendStr, const int &queue, const int &time)
+void SqlList::alterSqlTableInfo(const QString &table, const int &id, const bool &hex, const QString &str, const QString &sendStr, const int &queue, const int &time,QString &toolTipStr)
 {
+    QString tStr;
+    if(toolTipStr.isEmpty())
+    {
+        tStr = "按下回车自定义提示消息";
+    }
+    else
+    {
+        tStr = toolTipStr;
+    }
     QString senddata = str;
     senddata.replace("'", "''");
     QSqlQuery query(sqlDatabase);
-    QString strexec = QString("UPDATE %1 set hex=%3, str=\'%4\', sendStr = \"%5\",queue =%6, time = %7 where id = %2")
-            .arg(table).arg(id).arg(hex).arg(senddata).arg(sendStr).arg(queue).arg(time);
+    QString strexec = QString("UPDATE %1 set hex=%3, str=\'%4\', sendStr = \"%5\",queue =%6,toolTipStr =\"%8\", time = %7 where id = %2")
+            .arg(table).arg(id).arg(hex).arg(senddata).arg(sendStr).arg(queue).arg(time).arg(tStr);
     query.exec(strexec);
 }
 
-void SqlList::alterSqlTableInfoStr(const QString &table,const int &id, const QString &str)
+void SqlList::alterSqlTableInfoStr(const QString &table,const int &id, const QString &str,QString &toolTipStr)
 {
+    QString tStr;
+    if(toolTipStr.isEmpty())
+    {
+        tStr = "按下回车自定义提示消息";
+    }
+    else
+    {
+        tStr = toolTipStr;
+    }
     QString senddata = str;
     senddata.replace("'", "''");
     QSqlQuery query(sqlDatabase);
-    QString strexec = QString("UPDATE %1 set str='%3' where id=%2;")
-            .arg(table).arg(id).arg(senddata);
+    QString strexec = QString("UPDATE %1 set str='%3',toolTipStr ='%4' where id=%2;")
+            .arg(table).arg(id).arg(senddata).arg(tStr);
     query.exec(strexec);
 }
 
@@ -215,7 +248,25 @@ void SqlList::alterSqlTableInfoSendStr(const QString &table,const int &id, const
     query.exec(strexec);
 }
 
-void SqlList::selectTableLineInfo(const QString &table, const int &id, bool &hex, QString &str, QString &sendStr, int &queue, int &time)
+void SqlList::checkSqlTableRow(const QString &table,const QString &toolTipStr)
+{
+    QSqlQuery query(sqlDatabase);
+    QString strexec = QString("select * from sqlite_master where name='%1'  and sql like '%%2%';")
+            .arg(table).arg(toolTipStr);
+    query.exec(strexec);
+    if(query.next())
+    {
+        qDebug() <<"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << "\n ";
+        query.exec(QString("alter table %1 add %2 varchar(1024);").arg(table).arg(toolTipStr));
+    }
+    else
+    {
+        query.exec(QString("alter table %1 add %2 varchar(1024);").arg(table).arg(toolTipStr));
+        qDebug() <<"################################################" << "\n ";
+    }
+}
+
+void SqlList::selectTableLineInfo(const QString &table, const int &id, bool &hex, QString &str, QString &sendStr, int &queue, int &time,QString &toolTipStr)
 {
 
    QString sql = QString("SELECT * FROM %1 WHERE id=%2").arg(table).arg(id);
@@ -235,7 +286,7 @@ void SqlList::selectTableLineInfo(const QString &table, const int &id, bool &hex
                    .arg(query.value("time").toInt());
                  // qDebug() <<"表存在" << "\n ";
 
-
+              toolTipStr = query.value("toolTipStr").toString();
               hex = query.value("hex").toBool();
               str = query.value("str").toString();
               queue = query.value("queue").toInt();

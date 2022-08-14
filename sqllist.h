@@ -22,13 +22,14 @@ public:
     void checkSqlTableAll(QStringList * table);//all
     void alterSqlTable(const QString &oldTable,const QString &newTable);//重命名表
 public:
-    #define DEBUGLOG 0
-    void addSqlTableInfo(const QString &table,const int &id,const bool &hex,const QString &str,const QString &sendStr,const int &queue,const int &time);//添加表信息
-    void alterSqlTableInfo(const QString &table,const int &id,const bool &hex,const QString &str,const QString &sendStr,const int &queue,const int &time);//更新表指定id信息
-    void alterSqlTableInfoStr(const QString &table,const int &id,const QString &str);//更新Table ser信息
+    #define DEBUGLOG 1
+    void addSqlTableInfo(const QString &table,const int &id,const bool &hex,const QString &str,const QString &sendStr,const int &queue,const int &time,const QString &toolTipStr);//添加表信息
+    void alterSqlTableInfo(const QString &table,const int &id,const bool &hex,const QString &str,const QString &sendStr,const int &queue,const int &time,QString &toolTipStr);//更新表指定id信息
+    void alterSqlTableInfoStr(const QString &table,const int &id,const QString &str,QString &toolTipStr);//更新Table ser信息
     void alterSqlTableInfoSendStr(const QString &table,const int &id,const QString &sendStr);//更新table sendStr信息
+    void checkSqlTableRow(const QString &table,const QString &toolTipStr);
 public:
-    void selectTableLineInfo(const QString &table,const int &id,bool &hex,QString &str,QString &sendStr,int &queue,int &time);//查询指定id信息
+    void selectTableLineInfo(const QString &table,const int &id,bool &hex,QString &str,QString &sendStr,int &queue,int &time,QString &toolTipStr);//查询指定id信息
     void selectTableQueueLineInfo(const QString &table, QList<int> *id, QList<bool> *hex, QStringList *str, QStringList *sendStr,int &queue, QList<int> *time);//查询指定queue信息
 
 };

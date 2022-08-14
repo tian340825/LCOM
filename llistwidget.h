@@ -32,7 +32,7 @@ public:
     ~LListWidget();
 
 private:
-    #define DEBUGLOG 1
+    #define DEBUGLOG 0
     void initLineListWidget();
     void cyclicSendSig();
     void initSqlList();

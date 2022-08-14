@@ -110,6 +110,27 @@ void LListWidget::initLineListWidget()
         lineEdit[i]->setObjectName(QString::fromUtf8("listLineEdit"));
         sendPushButton[i]->setObjectName(QString::fromUtf8("listPushButton"));
 
+        lineEdit[i]->setToolTip("按下回车自定义提示消息");
+        connect(lineEdit[i], &QLineEdit::returnPressed, this, [=](){
+            QString newToolTip;
+            while(1)
+            {
+                bool ok;
+                QString text = QInputDialog::getText(this, tr("提示"),tr("请输入提示:"), QLineEdit::Normal,0, &ok);
+                if(ok && !text.isEmpty())
+                {
+                    newToolTip = text;
+                    if(DEBUGLOG == 1)
+                    qDebug() << text << "set success";
+                    break;
+                }
+                else
+                {
+                    return;
+                }
+            }
+            lineEdit[i]->setToolTip(newToolTip);
+        });
         horizontalLayout->addWidget(label[i]);
         horizontalLayout->addWidget(checkBox[i]);
         horizontalLayout->addWidget(lineEdit[i]);
@@ -275,10 +296,13 @@ void LListWidget::initSetPushButton()
     // myAc1->setStatusTip("This is ac1.");
     connect(myAc0, &QAction::triggered, this,[=](){
         qDebug() << QString("删除");
-        sqlist->deleteSqlTable(ui->comComboBox->currentText());
-        ui->comComboBox->removeItem(ui->comComboBox->currentIndex());
-        clearListWidget();
-        updataListWidget(ui->comComboBox->currentText());
+        if(ui->comComboBox->count() >= 2)
+        {
+            sqlist->deleteSqlTable(ui->comComboBox->currentText());
+            ui->comComboBox->removeItem(ui->comComboBox->currentIndex());
+            clearListWidget();
+            updataListWidget(ui->comComboBox->currentText());
+        }
     });
 
     QAction *myAc1 = new QAction(this);
@@ -439,15 +463,17 @@ void LListWidget::updataListWidget(const QString &tabName)
     bool hex;
     QString str;
     QString sendStr;
+    QString toolTipStr;
     int queue;
     int time;
 
     for(int i = 0;i < 50;i++)
     {
-        sqlist->selectTableLineInfo(tabName,i+1,hex,str,sendStr,queue,time);
+        sqlist->selectTableLineInfo(tabName,i+1,hex,str,sendStr,queue,time,toolTipStr);
 
         sendPushButton[i]->setText(sendStr);
         lineEdit[i]->setText(str);
+        lineEdit[i]->setToolTip(toolTipStr);
         queneEdit[i]->setText(QString("%1").arg(queue));
         msEdit[i]->setText(QString("%1").arg(time));
         if(hex == true)
@@ -468,18 +494,21 @@ void LListWidget::saveListWidget()
     bool hex;
     QString str;
     QString sendStr;
+    QString toolTipStr;
+
     int queue;
     int time;
     for(int i = 0;i < 50;i++)
     {
         sendStr = sendPushButton[i]->text();
         str = lineEdit[i]->text().toUtf8();
+        toolTipStr = lineEdit[i]->toolTip().toUtf8();
         queue = queneEdit[i]->text().toInt();
         time = msEdit[i]->text().toInt();
         hex = checkBox[i]->checkState();
         qDebug() <<QString("%1").arg(str);
 
-        sqlist->alterSqlTableInfo(ui->comComboBox->currentText(),i+1,hex,str,sendStr,queue,time);
+        sqlist->alterSqlTableInfo(ui->comComboBox->currentText(),i+1,hex,str,sendStr,queue,time,toolTipStr);
     }
 }
 
@@ -548,6 +577,7 @@ void LListWidget::clearListWidget()
     bool hex = false;
     QString str = "";
     QString sendStr = "";
+    QString toolTipStr = "";
     int queue = 0;
     int time = 1000;
 
@@ -555,6 +585,7 @@ void LListWidget::clearListWidget()
     {
         sendPushButton[i]->setText(sendStr);
         lineEdit[i]->setText(str);
+        lineEdit[i]->setToolTip(toolTipStr);
         queneEdit[i]->setText(QString("%1").arg(queue));
         msEdit[i]->setText(QString("%1").arg(time));
         if(hex == true)
