@@ -130,6 +130,7 @@ public:
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/image/check/locm.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
+        MainWindow->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         centralwidget->setMouseTracking(true);
@@ -516,7 +517,7 @@ public:
         timerSpinBox->setObjectName(QString::fromUtf8("timerSpinBox"));
         timerSpinBox->setMouseTracking(false);
         timerSpinBox->setTabletTracking(false);
-        timerSpinBox->setMinimum(20);
+        timerSpinBox->setMinimum(100);
         timerSpinBox->setMaximum(2000);
         timerSpinBox->setSingleStep(10);
 
@@ -541,6 +542,7 @@ public:
         fileTimerSpinBox->setMinimum(0);
         fileTimerSpinBox->setMaximum(20000000);
         fileTimerSpinBox->setSingleStep(100);
+        fileTimerSpinBox->setValue(100);
 
         horizontalLayout_10->addWidget(fileTimerSpinBox);
 
@@ -866,7 +868,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "LCOM", nullptr));
         closePushButton->setText(QString());
         label_8->setText(QCoreApplication::translate("MainWindow", "   LCOM 1.0", nullptr));
         minPushButton->setText(QString());

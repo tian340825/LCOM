@@ -29,11 +29,14 @@
    <bool>false</bool>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>LCOM</string>
   </property>
   <property name="windowIcon">
    <iconset resource="image.qrc">
     <normaloff>:/image/check/locm.png</normaloff>:/image/check/locm.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="mouseTracking">
@@ -937,7 +940,7 @@ color:rgb(253, 127, 151);</string>
                    <bool>false</bool>
                   </property>
                   <property name="minimum">
-                   <number>20</number>
+                   <number>100</number>
                   </property>
                   <property name="maximum">
                    <number>2000</number>
@@ -982,6 +985,9 @@ color:rgb(253, 127, 151);</string>
                    <number>20000000</number>
                   </property>
                   <property name="singleStep">
+                   <number>100</number>
+                  </property>
+                  <property name="value">
                    <number>100</number>
                   </property>
                  </widget>

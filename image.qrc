@@ -21,5 +21,7 @@
         <file>image/noCheck/time.png</file>
         <file>image/noCheck/expand.png</file>
         <file>image/check/locm.png</file>
+        <file>image/check/expfileand.png</file>
+        <file>image/check/expclear.png</file>
     </qresource>
 </RCC>

@@ -26,7 +26,9 @@ namespace Ui {
 class MainWindow;
 }
 #define MAX_CHECK_FLAG 20
-class MainWindow : public FramelessMainWindow
+
+//class MainWindow : public FramelessMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 

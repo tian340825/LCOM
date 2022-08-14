@@ -1,16 +1,16 @@
 QMainWindow
 {
     border-image:none;
-    border-radius: 25px rgb(253, 127, 151);;
-    border:20px solid rgb(253, 127, 151);
-    background-color:rgb(253, 127, 151);
+    border-radius: 25px rgb(255, 255, 255);
+    border:20px solid rgb(255, 255, 255);
+    background-color:rgb(255, 255, 255);
 }
 QWidget#setWidget
 {
     border-image:none;
     border-radius: 15px;
     border:2px solid rgb(253, 127, 151);
-    background-color:rgb(253, 127, 151);
+    background-color:rgb(255, 255, 255);
 }
 QPushButton#setPushButton::menu-indicator
 {
@@ -74,7 +74,7 @@ QPushButton#clearShowPushButton:hover
     border-color:rgb(253, 127, 151);
     background-color:rgb(255,255,255);
     font:23px "Segoe UI Black";
-    image: url(:/image/check/clear.png);
+    image: url(:/image/check/expclear.png);
     color:rgb(253, 127, 151);
 }
 QPushButton#clearShowPushButton
@@ -85,7 +85,7 @@ QPushButton#clearShowPushButton
     image: url(:/image/check/clear.png);
     color:rgb(120, 120, 120);
 }
-QPushButton#clearShowPushButton:hover
+QPushButton#clearShowPushButton:checked
 {
     border-style:outset;
     border-radius:1px;
@@ -95,6 +95,16 @@ QPushButton#clearShowPushButton:hover
     image: url(:/image/check/clear.png);
     color:rgb(253, 127, 151);
 }
+QPushButton#clearSendPushButton:hover
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/expclear.png);
+    color:rgb(253, 127, 151);
+}
 QPushButton#clearSendPushButton
 {
     background-color:rgb(255,255,255);
@@ -102,6 +112,16 @@ QPushButton#clearSendPushButton
     font:20px "Segoe UI Black";
     image: url(:/image/check/clear.png);
     color:rgb(120, 120, 120);
+}
+QPushButton#clearSendPushButton:checked
+{
+    border-style:outset;
+    border-radius:1px;
+    border-color:rgb(253, 127, 151);
+    background-color:rgb(255,255,255);
+    font:23px "Segoe UI Black";
+    image: url(:/image/check/clear.png);
+    color:rgb(253, 127, 151);
 }
 QPushButton#widgetSetPushButton:hover
 {

@@ -3,7 +3,7 @@
 #include "framelessmainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : FramelessMainWindow(parent)
+    : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
 
@@ -42,7 +42,8 @@ MainWindow::MainWindow(QWidget *parent)
     sizes << 500 << 500;
     ui->splitter_4->setSizes(sizes);
     resize(QSize(1200, 900));
-   this->setTitleBar(ui->tileWidget);
+  // this->setTitleBar(ui->tileWidget);
+    ui->tileWidget->hide();
     QMenu *menu = new QMenu();
    QAction* project0Action = menu->addAction(tr("定时发送"));
    project0Action->setCheckable(true);

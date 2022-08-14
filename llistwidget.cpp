@@ -49,9 +49,9 @@ void LListWidget::initLineListWidget()
     Label1->setAlignment( Qt::AlignHCenter);
     Label2->setText(QString("Str"));
     Label2->setAlignment( Qt::AlignHCenter);
-    Label3->setText(QString("quene"));
+    Label3->setText(QString(""));
     Label3->setAlignment( Qt::AlignHCenter);
-    Label4->setText(QString("ms"));
+    Label4->setText(QString(""));
     Label4->setAlignment( Qt::AlignHCenter);
     Label5->setText(QString(""));
 
@@ -116,7 +116,8 @@ void LListWidget::initLineListWidget()
         horizontalLayout->addWidget(queneEdit[i]);
         horizontalLayout->addWidget(msEdit[i]);
         horizontalLayout->addWidget(sendPushButton[i]);
-
+        horizontalLayout->setContentsMargins(0,0,0,0);
+        horizontalLayout->setSpacing(0);
         connect(sendPushButton[i],&LPushButton::leftButtonClicked,this,[=](){
             qDebug() << QString("%1").arg(lineEdit[i]->text());
             QString str = QString("%1").arg(lineEdit[i]->text());
@@ -175,7 +176,8 @@ void LListWidget::initLineListWidget()
        // connect(queneEdit[i],&QLineEdit::textChanged,this,&LListWidget::saveListWidget);
 
     }
-
+    ui->verticalLayout->setContentsMargins(0,0,0,0);
+    ui->verticalLayout->setSpacing(0);
     initSqlList();
     connect(ui->comComboBox,&LComboBox::currentTextChanged,this,&LListWidget::updataListWidget);
     connect(ui->comComboBox,&LComboBox::clicked,this,&LListWidget::saveListWidget);
@@ -202,8 +204,11 @@ void LListWidget::cyclicSendSig()
         }
         else
         {
-            cyclicCount = 1;
-            cyclicSendTimer->start(1000);
+            if(cyclicExeOneFlg != true)
+            {
+                cyclicCount = 1;
+                cyclicSendTimer->start(1000);
+            }
             return;
         }
     }
@@ -279,7 +284,7 @@ void LListWidget::initSetPushButton()
     QAction *myAc1 = new QAction(this);
         myAc1->setText("新增");
         // myAc1->setStatusTip("This is ac1.");
-        connect(myAc1, &QAction::triggered, this,[=](){      
+        connect(myAc1, &QAction::triggered, this,[=](){
         qDebug() << QString("新增");
         saveListWidget();
         addTabListWidget();
@@ -319,61 +324,38 @@ void LListWidget::initSetPushButton()
         saveListWidget();
         cyclicSendSig();});
 
-    QAction *myAc4 = new QAction(this);
-    myAc4->setText("循环发送");
-    myAc4->setCheckable(true);
-    // myAc3->setStatusTip("This is ac3");
-    connect(myAc4, &QAction::triggered, this, [=](){
-        saveListWidget();
-        cyclicCount=1;
-        hexCyclic->clear();
-        timeCyclic->clear();
-        idCyclic->clear();
-        strCyclic->clear();
-        sendStrCyclic->clear();
-        if(DEBUGLOG == 1)
-        qDebug() << QString("循环发送");
-        if(myAc4->isChecked())
-        {
-            cyclicSendTimer->start(1000);
-        }
-        else
-        {
-            cyclicSendTimer->stop();
-        }
-
-    });
-
     QAction *myAc5 = new QAction(this);
     myAc5->setText("重命名");
     // myAc1->setStatusTip("This is ac1.");
     connect(myAc5, &QAction::triggered, this,[=](){
         qDebug() << QString("重命名");
+        saveListWidget();
+
         QString newtab;
         while(1)
         {
-        bool ok;
-        QString text = QInputDialog::getText(this, tr("新增Tab"),tr("请输入表名:不能重复"), QLineEdit::Normal,0, &ok);
-        if(ok && !text.isEmpty())
-        {
-            if(tableName->contains(text))
+            bool ok;
+            QString text = QInputDialog::getText(this, tr("新增Tab"),tr("请输入表名:不能重复"), QLineEdit::Normal,0, &ok);
+            if(ok && !text.isEmpty())
             {
-                if(DEBUGLOG == 1)
-                qDebug() << text << "is exist";
-                text = QInputDialog::getText(this, tr("新增Tab"),tr("请输入表名:不能重复"), QLineEdit::Normal,0, &ok);
+                if(tableName->contains(text))
+                {
+                    if(DEBUGLOG == 1)
+                    qDebug() << text << "is exist";
+                    text = QInputDialog::getText(this, tr("新增Tab"),tr("请输入表名:不能重复"), QLineEdit::Normal,0, &ok);
+                }
+                else
+                {
+                    newtab = text;
+                    if(DEBUGLOG == 1)
+                    qDebug() << text << "set success";
+                    break;
+                }
             }
             else
             {
-                newtab = text;
-                if(DEBUGLOG == 1)
-                qDebug() << text << "set success";
-                break;
+                return;
             }
-        }
-        else
-        {
-            return;
-        }
         }
         sqlist->alterSqlTable(ui->comComboBox->currentText(),newtab);
 
@@ -393,7 +375,59 @@ void LListWidget::initSetPushButton()
     menu->addAction(myAc1);
     menu->addAction(myAc2);
     menu->addAction(myAc3);
-    menu->addAction(myAc4);
+    QMenu* myAc4 = menu->addMenu("循环发送");
+
+    QAction* project1Action= myAc4->addAction(tr("执行1次"));
+    QAction* project2Action= myAc4->addAction(tr("执行N次"));
+    project1Action->setCheckable(true);
+    project2Action->setCheckable(true);
+    QActionGroup * m_MenuActionGroup = new QActionGroup(this);
+    m_MenuActionGroup->addAction(project1Action);
+    m_MenuActionGroup->addAction(project2Action);
+
+    connect(project1Action, &QAction::triggered, this, [=](){
+        saveListWidget();
+        cyclicCount=1;
+        hexCyclic->clear();
+        timeCyclic->clear();
+        idCyclic->clear();
+        strCyclic->clear();
+        sendStrCyclic->clear();
+        if(DEBUGLOG == 1)
+        qDebug() << QString("循环发送");
+        cyclicExeOneFlg = true;
+
+        if(project1Action->isChecked())
+        {
+            cyclicSendTimer->start(1000);
+        }
+        else
+        {
+            cyclicSendTimer->stop();
+        }
+
+    });
+    connect(project2Action, &QAction::triggered, this, [=](){
+        saveListWidget();
+        cyclicCount=1;
+        hexCyclic->clear();
+        timeCyclic->clear();
+        idCyclic->clear();
+        strCyclic->clear();
+        sendStrCyclic->clear();
+        cyclicExeOneFlg = false;
+        if(DEBUGLOG == 1)
+        qDebug() << QString("循环发送");
+        if(project2Action->isChecked())
+        {
+            cyclicSendTimer->start(1000);
+        }
+        else
+        {
+            cyclicSendTimer->stop();
+        }
+    });
+
     menu->addAction(myAc5);
 
     // 为QToolButton设置菜单

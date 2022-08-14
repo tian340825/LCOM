@@ -32,7 +32,7 @@ public:
     ~LListWidget();
 
 private:
-    #define DEBUGLOG 0
+    #define DEBUGLOG 1
     void initLineListWidget();
     void cyclicSendSig();
     void initSqlList();
@@ -57,6 +57,8 @@ private:
     QStringList *strCyclic;
     QStringList *sendStrCyclic;
     bool initOver = false;
+    bool cyclicExeOneFlg = false;
+
     Ui::LListWidget *ui;
     QTimer *cyclicSendTimer;
     int cyclicCount = 1;
