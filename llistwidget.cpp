@@ -242,18 +242,30 @@ void LListWidget::cyclicSendSig()
 
     if(sendStrCyclic->first() == "发送(\\n)")
     {
+        if(isHex == true)
+         str += "0A";
+        else
         str += "\n";
     }
     else if(sendStrCyclic->first() == "发送(\\r)")
     {
+        if(isHex == true)
+         str += "0D";
+        else
         str += "\r";
     }
     else if(sendStrCyclic->first() == "发送(\\r\\n)")
     {
+        if(isHex == true)
+         str += "0D0A";
+        else
         str += "\r\n";
     }
     else if(sendStrCyclic->first() == "发送(\\n\\r)")
     {
+        if(isHex == true)
+         str += "0A0D";
+        else
         str += "\n\r";
     }
     else

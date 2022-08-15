@@ -517,9 +517,10 @@ public:
         timerSpinBox->setObjectName(QString::fromUtf8("timerSpinBox"));
         timerSpinBox->setMouseTracking(false);
         timerSpinBox->setTabletTracking(false);
-        timerSpinBox->setMinimum(100);
+        timerSpinBox->setMinimum(0);
         timerSpinBox->setMaximum(2000);
         timerSpinBox->setSingleStep(10);
+        timerSpinBox->setValue(20);
 
         horizontalLayout_9->addWidget(timerSpinBox);
 

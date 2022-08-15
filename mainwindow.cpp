@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     serialCheckTimer->setInterval(1000);//默认周期1000ms
     serialCheckTimer->setSingleShot(true);//只运行一次
     serial = new QSerialPort(this);
-    connect(recvTimer,&QTimer::timeout,this,[=](){serialPortRecv();});
+    connect(recvTimer,&QTimer::timeout,this,[=](){});
     connect(serial, static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::error),  this, &MainWindow::serialPortErrorSign);
     connect(serialCheckTimer,&QTimer::timeout,this,[=](){serialCheckTimerSig();});
     connect(sendTimer,&QTimer::timeout,this,[=](){sendPushButtonSign();});
@@ -257,15 +257,16 @@ void MainWindow::serialPortSend(const QString &str,bool &hexSend)
 
 }
 
-void MainWindow::serialPortRecv()
+void MainWindow::serialPortRecv(bool newLineFlg)
 {
      QByteArray buffer = serial->readAll();
+
      QByteArray senddata = QString(buffer).toUtf8();
      QString receive;
      receive=QString(senddata);
-     if(ui->timeShowPushButton->isChecked() == true)
+     if(ui->timeShowPushButton->isChecked() == true && newLineFlg == true)
      {
-        receive = QString("\r\n[%1]:Rx -> %2").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg(receive);
+        receive = QString("[%1]:Rx -> %2").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg(receive);
      }
 
      if(ui->hexShowPushButton->isChecked() == true)
@@ -278,17 +279,33 @@ void MainWindow::serialPortRecv()
      }
      //ui->showTextEdit->setTextColor(cfgWidget->recvShowcolorValue());
      //在接受窗口显示收到的数据
-     ui->showTextEdit->insertPlainText(receive);
+     if(newLineFlg == true)
+        ui->showTextEdit->append(receive);
+     else
+         ui->showTextEdit->insertPlainText(receive);
 
+     if(recvTimer->isActive() == true)
+     {
+         recvTimer->setInterval(ui->timerSpinBox->text().toUInt());
+         recvTimer->start();
+     }
+     else
+     {
+         recvTimer->start(ui->timerSpinBox->text().toUInt());
+     }
 }
 
 void MainWindow::serialPortRecvSign()
 {
     if(ui->rxShowPushButton->isChecked() == true)
     {
-        if(!recvTimer->isActive()) //勾选了16进制发送
+        if(recvTimer->isActive() == true)
         {
-           recvTimer->start(ui->timerSpinBox->text().toUInt());//启动周期发送定时器
+            serialPortRecv(false);
+        }
+        else
+        {
+            serialPortRecv(true);
         }
     }
 }
@@ -422,7 +439,7 @@ void MainWindow::sendPushButtonSign()
         on_clearSendPushButton_clicked();
         return;
     }
-    qDebug()<<"111"<<ui->sendTextEdit->toHtml();
+   // qDebug()<<"111"<<ui->sendTextEdit->toHtml();
     QString oldHtml =ui->sendTextEdit->toHtml();
     QString newHtml;
 
@@ -434,15 +451,27 @@ void MainWindow::sendPushButtonSign()
         case  sendNULL:
             break;
         case  sendReturn:
-            senddata += "\r";
+             if(hexStatus == true)
+              senddata += "0D";
+             else
+              senddata += "\r";
             break;
         case  sendLinFeed:
+            if(hexStatus == true)
+             senddata += "0A";
+            else
             senddata += "\n";
             break;
         case  sendReturnLinFeed:
+            if(hexStatus == true)
+             senddata += "0D0A";
+            else
             senddata += "\r\n";
             break;
         case  sendLinFeedReturn:
+            if(hexStatus == true)
+             senddata += "0A0D";
+            else
             senddata += "\n\r";
             break;
         default:

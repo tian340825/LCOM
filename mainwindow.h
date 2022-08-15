@@ -60,7 +60,7 @@ private:
     bool isSerialOpen = false;
     bool isSendFile = false;
     void serialPortSend(const QString &str,bool &hexSend);
-    void serialPortRecv();
+    void serialPortRecv(bool newLineFlg);
     void serialPortRecvSign();
     void serialPortErrorSign(QSerialPort::SerialPortError error);
     void serialCheckTimerSig();

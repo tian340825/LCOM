@@ -940,13 +940,16 @@ color:rgb(253, 127, 151);</string>
                    <bool>false</bool>
                   </property>
                   <property name="minimum">
-                   <number>100</number>
+                   <number>0</number>
                   </property>
                   <property name="maximum">
                    <number>2000</number>
                   </property>
                   <property name="singleStep">
                    <number>10</number>
+                  </property>
+                  <property name="value">
+                   <number>20</number>
                   </property>
                  </widget>
                 </item>
