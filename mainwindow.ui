@@ -1666,6 +1666,12 @@ border:none</string>
               <bool>false</bool>
              </property>
              <widget class="QTextEdit" name="showTextEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Maximum">
+                <horstretch>0</horstretch>
+                <verstretch>5</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>0</width>
@@ -1700,6 +1706,12 @@ p, li { white-space: pre-wrap; }
               </property>
              </widget>
              <widget class="QTextEdit" name="sendTextEdit">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+                <horstretch>0</horstretch>
+                <verstretch>1</verstretch>
+               </sizepolicy>
+              </property>
               <property name="minimumSize">
                <size>
                 <width>0</width>

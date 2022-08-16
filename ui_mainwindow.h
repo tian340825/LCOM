@@ -829,6 +829,11 @@ public:
         splitter->setChildrenCollapsible(false);
         showTextEdit = new QTextEdit(splitter);
         showTextEdit->setObjectName(QString::fromUtf8("showTextEdit"));
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Maximum);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(5);
+        sizePolicy4.setHeightForWidth(showTextEdit->sizePolicy().hasHeightForWidth());
+        showTextEdit->setSizePolicy(sizePolicy4);
         showTextEdit->setMinimumSize(QSize(0, 0));
         QFont font;
         font.setPointSize(9);
@@ -842,6 +847,11 @@ public:
         splitter->addWidget(showTextEdit);
         sendTextEdit = new QTextEdit(splitter);
         sendTextEdit->setObjectName(QString::fromUtf8("sendTextEdit"));
+        QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Minimum);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(1);
+        sizePolicy5.setHeightForWidth(sendTextEdit->sizePolicy().hasHeightForWidth());
+        sendTextEdit->setSizePolicy(sizePolicy5);
         sendTextEdit->setMinimumSize(QSize(0, 0));
         sendTextEdit->setMouseTracking(false);
         sendTextEdit->setTabletTracking(false);

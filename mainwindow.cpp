@@ -6,7 +6,6 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-
     setMouseTracking(true);
     ui->setupUi(this);
     setMouseTracking(true);
@@ -21,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     serialCheckTimer->setInterval(1000);//默认周期1000ms
     serialCheckTimer->setSingleShot(true);//只运行一次
     serial = new QSerialPort(this);
-    connect(recvTimer,&QTimer::timeout,this,[=](){});
+    connect(recvTimer,&QTimer::timeout,this,[=](){serialPortRecv();});
     connect(serial, static_cast<void (QSerialPort::*)(QSerialPort::SerialPortError)>(&QSerialPort::error),  this, &MainWindow::serialPortErrorSign);
     connect(serialCheckTimer,&QTimer::timeout,this,[=](){serialCheckTimerSig();});
     connect(sendTimer,&QTimer::timeout,this,[=](){sendPushButtonSign();});
@@ -42,8 +41,18 @@ MainWindow::MainWindow(QWidget *parent)
     sizes << 500 << 500;
     ui->splitter_4->setSizes(sizes);
     resize(QSize(1200, 900));
+    QList<int> sizes2;
+    // 在保持比例的情况下，绝对值要尽量大
+    sizes2 << 10 << 500;
+    //ui->splitter->setSizes(sizes);
   // this->setTitleBar(ui->tileWidget);
     ui->tileWidget->hide();
+
+     ui->splitter->setStretchFactor(0,8);
+
+     ui->splitter->setStretchFactor(1,2);
+   //  ui->sendTextEdit->show();
+
     QMenu *menu = new QMenu();
    QAction* project0Action = menu->addAction(tr("定时发送"));
    project0Action->setCheckable(true);
@@ -257,55 +266,53 @@ void MainWindow::serialPortSend(const QString &str,bool &hexSend)
 
 }
 
-void MainWindow::serialPortRecv(bool newLineFlg)
+void MainWindow::serialPortRecv()
 {
      QByteArray buffer = serial->readAll();
+   //  char *data = buffer.data();
+     qDebug() << QString("2222222222222222");
+
 
      QByteArray senddata = QString(buffer).toUtf8();
      QString receive;
      receive=QString(senddata);
-     if(ui->timeShowPushButton->isChecked() == true && newLineFlg == true)
-     {
-        receive = QString("[%1]:Rx -> %2").arg(QTime::currentTime().toString("HH:mm:ss:zzz")).arg(receive);
-     }
-
+     ui->showTextEdit->setWordWrapMode(QTextOption::WrapAnywhere);
      if(ui->hexShowPushButton->isChecked() == true)
      {
         /*hex显示*/
         receive = senddata.toHex(' ').trimmed().toUpper();
         ui->showTextEdit->setTextColor(QColor(Qt::green));
-        QString str = "\r\n";
-        ui->showTextEdit->insertPlainText(str);
      }
-     //ui->showTextEdit->setTextColor(cfgWidget->recvShowcolorValue());
-     //在接受窗口显示收到的数据
-     if(newLineFlg == true)
-        ui->showTextEdit->append(receive);
-     else
-         ui->showTextEdit->insertPlainText(receive);
 
-     if(recvTimer->isActive() == true)
-     {
-         recvTimer->setInterval(ui->timerSpinBox->text().toUInt());
-         recvTimer->start();
-     }
-     else
-     {
-         recvTimer->start(ui->timerSpinBox->text().toUInt());
-     }
+    qDebug() << QString("[%1]").arg(receive);
+    if(ui->timeShowPushButton->isChecked() == true)
+    {
+        QString time = QString("[%1]:Rx -> ").arg(QTime::currentTime().toString("HH:mm:ss:zzz"));
+
+        ui->showTextEdit->append(time);
+        ui->showTextEdit->moveCursor(QTextCursor::End);
+        ui->showTextEdit->insertPlainText(receive);
+    }
+    else
+    {
+        ui->showTextEdit->moveCursor(QTextCursor::End);
+        ui->showTextEdit->append(receive);
+    }
 }
 
 void MainWindow::serialPortRecvSign()
 {
     if(ui->rxShowPushButton->isChecked() == true)
     {
+
         if(recvTimer->isActive() == true)
         {
-            serialPortRecv(false);
+            recvTimer->setInterval(ui->timerSpinBox->text().toUInt());
+           // recvTimer->start();
         }
         else
         {
-            serialPortRecv(true);
+            recvTimer->start(ui->timerSpinBox->text().toUInt());
         }
     }
 }
