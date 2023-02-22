@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QMouseEvent>
+#define L_LOG qDebug() << "[" << __FILE__ << ":" << __LINE__ << ":" << __func__ << __DATE__ << __TIME__<< "]"
 
 class LComboBox : public QComboBox
 {

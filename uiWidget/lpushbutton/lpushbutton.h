@@ -9,6 +9,7 @@
 #include <QEvent>
 #include <QMouseEvent>
 #include <QDebug>
+#define L_LOG qDebug() << "[" << __FILE__ << ":" << __LINE__ << ":" << __func__ << __DATE__ << __TIME__<< "]"
 
 class LPushButton : public QPushButton
 {

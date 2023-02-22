@@ -23,5 +23,7 @@
         <file>image/check/locm.png</file>
         <file>image/check/expfileand.png</file>
         <file>image/check/expclear.png</file>
+        <file>image/check/serial_first.png</file>
+        <file>image/check/serial_second.png</file>
     </qresource>
 </RCC>

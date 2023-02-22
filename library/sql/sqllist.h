@@ -1,3 +1,13 @@
+/**
+ * @File Name: sqllist.h
+ * @brief  
+ * @Author : L email:tianlicoder@foxmail.com
+ * @Version : 1.0
+ * @Creat Date : 2023-02-15
+ * 
+ * @copyright Copyright (c) 2023 
+ * 
+ */
 #ifndef SQLLIST_H
 #define SQLLIST_H
 #include <QObject>
@@ -8,11 +18,12 @@
 #include <QMessageBox>
 #include <QSqlError>
 #include <QSqlQuery>
+#define L_LOG qDebug() << "[" << __FILE__ << ":" << __LINE__ << ":" << __func__ << __DATE__ << __TIME__<< "]"
+
 class SqlList : public QObject
 {
     Q_OBJECT
     QSqlDatabase sqlDatabase;
-
 public:
     explicit SqlList(QString sqlname);
     void reSqlList(QString sqlname);
@@ -28,6 +39,10 @@ public:
     void alterSqlTableInfoStr(const QString &table,const int &id,const QString &str,QString &toolTipStr);//更新Table ser信息
     void alterSqlTableInfoSendStr(const QString &table,const int &id,const QString &sendStr);//更新table sendStr信息
     void checkSqlTableRow(const QString &table,const QString &toolTipStr);
+    void alterSqlTableInfoExampleResult(const QString &table,const int &id,const QString &example);
+    bool selectTableResult(const QString &table, const int &id);
+    void alterSqlTableInfoActualResult(const QString &table,const int &id,const QString &example);
+
 public:
     void selectTableLineInfo(const QString &table,const int &id,bool &hex,QString &str,QString &sendStr,int &queue,int &time,QString &toolTipStr);//查询指定id信息
     void selectTableQueueLineInfo(const QString &table, QList<int> *id, QList<bool> *hex, QStringList *str, QStringList *sendStr,int &queue, QList<int> *time);//查询指定queue信息

@@ -20,7 +20,7 @@
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
-#include <lcombobox.h>
+#include <uiWidget/lcombobox/lcombobox.h>
 
 QT_BEGIN_NAMESPACE
 

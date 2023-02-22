@@ -6,6 +6,8 @@
 #include <QTabWidget>
 #include <QLabel>
 #include <QDebug>
+#define L_LOG qDebug() << "[" << __FILE__ << ":" << __LINE__ << ":" << __func__ << __DATE__ << __TIME__<< "]"
+
 class LTabWidget: public QTabWidget
 {
     Q_OBJECT

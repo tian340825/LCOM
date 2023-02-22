@@ -13,11 +13,12 @@
 #include <QMenu>
 #include <QAction>
 #include <QTimer>
-#include "sqllist.h"
+#include "library/sql/sqllist.h"
 #include <QInputDialog>
-#include "lcombobox.h"
+#include "uiWidget/lcombobox/lcombobox.h"
 #include <QFileDialog>
-#include "lpushbutton.h"
+#include "uiWidget/lpushbutton/lpushbutton.h"
+#define L_LOG qDebug() << "[" << __FILE__ << ":" << __LINE__ << ":" << __func__ << __DATE__ << __TIME__<< "]"
 
 namespace Ui {
 class LListWidget;
